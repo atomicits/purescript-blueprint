@@ -2,3 +2,4 @@ node_modules/
 output/
 .pulp*
 bower_components/
+.psc-id*
