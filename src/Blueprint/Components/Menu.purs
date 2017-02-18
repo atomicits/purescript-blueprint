@@ -4,13 +4,34 @@ import React
 import Blueprint.PropTypes
 import Blueprint.ComponentsClasses
 
-type MenuItemProps = MenuItemPropsEx ()
+type IMenuItemProps = IMenuItemPropsEx ()
 
-type MenuItemPropsEx r = IActionPropsEx ( text ::  String
-                                        , label :: ComponentORString
-                                        , shouldDismissPopover :: Boolean
-                                        , submenu :: Array MenuItemProps
-                                        , submenuViewportMargin :: { left :: Int, right :: Int }
-                                        , useSmartPositioning :: Boolean
-                                        | r
-                                        )
+type IMenuItemPropsEx r = IActionPropsEx ( href :: String
+                                         , target :: String
+                                         , text ::  String
+                                         , label :: ComponentORString
+                                         , shouldDismissPopover :: Boolean
+-- handling submenu props                , submenu :: Array IMenuItemProps
+                                         , submenuViewportMargin :: { left :: Int, right :: Int }
+                                         , useSmartPositioning :: Boolean
+                                         | r
+                                         )
+
+type IMenuProps = IMenuPropsEx ()
+
+type IMenuPropsEx r = IPropsEx r
+
+type IMenuDividerProps = IMenuDividerPropsEx ()
+
+type IMenuDividerPropsEx r = IPropsEx (title :: String | r)
+
+menu :: Prop IMenuProps -> Array ReactElement -> ReactElement
+menu = createElement menuClass
+
+
+menuDevider  :: Prop IMenuDividerProps -> ReactElement
+menuDevider p = createElement menuDividerClass p []
+
+
+menuItem :: Prop IMenuDividerProps -> ReactElement
+menuItem p = createElement menuItemClass p []

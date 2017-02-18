@@ -1,9 +1,12 @@
 module Blueprint.Components.Popover where
 
 import Prelude
-import Blueprint.PropTypes
-import Bluprint.CommonTypes
-import Blueprint.Components.Overlay
+import React (ReactElement, createElement)
+import Blueprint.ComponentsClasses (popoverClass)
+import Blueprint.PropTypes (ComponentORString, ITetherConstraint, Prop, UnknownFunctionType, UnknownReactType)
+import Bluprint.CommonTypes (Position)
+import Blueprint.Components.Overlay (IOverLayablePropsEx)
+
 
 type IPopoverProps = IPopoverPropsEx ()
 
@@ -45,3 +48,7 @@ type IPopoverPropsEx r =
                       , useSmartArrowPositioning :: Boolean
                       , useSmartPositioning :: Boolean
                       |r)
+
+
+popover :: Prop IPopoverProps -> Array ReactElement -> ReactElement
+popover = createElement popoverClass

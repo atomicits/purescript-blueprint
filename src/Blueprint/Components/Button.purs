@@ -4,8 +4,6 @@ import React
 import Blueprint.PropTypes (IActionPropsEx, Prop, UnknownRefType)
 import Blueprint.ComponentsClasses (anchorButtonClass, buttonClass)
 
---- State Pending
-
 type ButtonProps =  ButtonPropsEx ()
 type ButtonPropsEx r =  IActionPropsEx ( elementRef :: UnknownRefType
                                        , rightIconName :: String

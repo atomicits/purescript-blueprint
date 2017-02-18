@@ -31,7 +31,6 @@ exports.navbarClass = BP.Navbar;
 exports.nonIdealStateClass = BP.NonIdealState;
 exports.overlayClass = BP.Overlay;
 exports.popoverClass = BP.Popover;
-exports.popoverInteractionKindClass = BP.PopoverInteractionKind;
 exports.positionClass = BP.Position;
 exports.portalClass = BP.Portal;
 exports.progressBarClass = BP.ProgressBar;
