@@ -1,22 +1,23 @@
 module Blueprint.Components.Alert where
 
-import React
 import Blueprint.ComponentsClasses (alertClass)
-import Blueprint.PropTypes
+import Blueprint.PropTypes (Intent, Prop, PropsEx, UnknownEventType, UnknownStyleType)
+import React
 
+type AlertProps = AlertPropsEx ()
 
-type AlertProps  = AlertPropsEx ()
-
-type AlertPropsEx  r  = IPropsEx ( cancelButtonText :: String
-                                 , confirmButtonText :: String
-                                 , iconName :: String
-                                 , intent :: Intent
-                                 , isOpen :: Boolean
-                                 , style :: UnknownStyleType
-                                 , onCancel ::  UnknownEventType
-                                 , onConfirm :: UnknownEventType
-                                 | r
-                                 )
+-- DISCUSS: Do we need this to be extensible?
+type AlertPropsEx r  = PropsEx
+  ( cancelButtonText :: String
+  , confirmButtonText :: String
+  , iconName :: String
+  , intent :: Intent
+  , isOpen :: Boolean
+  , style :: UnknownStyleType
+  , onCancel ::  UnknownEventType
+  , onConfirm :: UnknownEventType
+  | r
+  )
 
 alert :: Prop AlertProps -> Array ReactElement -> ReactElement
 alert = createElement alertClass
