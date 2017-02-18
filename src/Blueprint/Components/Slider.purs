@@ -14,12 +14,12 @@ type SliderPropsEx r = IPropsEx ( disabled :: Boolean
                                 , min :: Number
                                 , showTrackFill :: Boolean
                                 , stepSize :: Number
-                                , renderLabel :: String             --- TODO -- ((value: number) => string | JSX.Element) | boolean
+                                , renderLabel :: String       --- TODO -- ((value: number) => string | JSX.Element) | boolean
                                 , isMoving :: Boolean
                                 , initialValue :: Number
                                 , value :: NumberRange
-                                , onChange ::  Unit               --- TODO -- (value: NumberRange): void;
-                                , onRelease :: Unit               --- TODO -- (value: NumberRange): void;
+                                , onChange ::  NumberRange -> Unit
+                                , onRelease :: NumberRange -> Unit
                                 | r
                                 )
 

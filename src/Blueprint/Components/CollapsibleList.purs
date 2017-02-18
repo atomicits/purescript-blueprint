@@ -4,7 +4,8 @@ import React
 import Blueprint.ComponentsClasses
 import Blueprint.Components.Menu
 import Blueprint.PropTypes
-import Blueprint.Popover
+import Blueprint.Components.Popover
+
 
 newtype CollapseForm = CollapseForm Int
 

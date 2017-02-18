@@ -1,16 +1,18 @@
 module Blueprint.Components.Tooltip where
 
-import Blueprint.ComponentsClasses (tooltipClass)
-import Blueprint.PropTypes (ComponentORString, IPropsEx, Prop)
-import React (ReactElement, createElement)
-
+import Prelude
+import Blueprint.PropTypes
+import Bluprint.CommonTypes
+import Blueprint.Components.Overlay
+import React
+import Blueprint.ComponentsClasses
 
 --- export interface ITooltipProps extends IProps, IIntentProps
 
 type TooltipProps = TooltipPropsEx ()
 
 type TooltipPropsEx r = IPropsEx ( content :: ComponentORString
-                                 , constraints :: String                     --- TODO --ITetherConstraint []
+                                 , constraints :: ITetherConstraint
                                  , defaultIsOpen :: Boolean
                                  , hoverCloseDelay :: Number
                                  , hoverOpenDelay :: Number
@@ -18,7 +20,7 @@ type TooltipPropsEx r = IPropsEx ( content :: ComponentORString
                                  , isDisabled :: Boolean
                                  , isOpen :: Boolean
                                  , portalClassName ::  String
-                                 , position :: String                       --- TODO  -- Position
+                                 , position :: Position
                                  , rootElementTag :: String
                                  , tooltipClassName :: String
                                  , transitionDuration :: Number
