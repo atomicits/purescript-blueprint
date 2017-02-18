@@ -1,16 +1,18 @@
 module Blueprint.Components.Collapse where
 
-import Blueprint.PropTypes
-import Blueprint.ComponentsClasses
+import Blueprint.ComponentsClasses (collapseClass)
+import Blueprint.PropTypes (Prop, PropsEx, UnknownReactType)
 import React
 
 type CollapseProps = CollapsePropsEx ()
 
-type CollapsePropsEx r = IPropsEx ( comopnent :: UnknownReactType
-                                  , isOpen :: Boolean
-                                  , transitionDuration :: Number
-                                  | r
-                                  )
+-- DISCUSS: Do we need this to be extensible?
+type CollapsePropsEx r = PropsEx
+  ( comopnent :: UnknownReactType
+  , isOpen :: Boolean
+  , transitionDuration :: Number
+  | r
+  )
 
 collapse :: Prop CollapseProps -> Array ReactElement -> ReactElement
 collapse = createElement collapseClass
