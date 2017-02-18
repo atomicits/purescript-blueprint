@@ -3,7 +3,8 @@ module Blueprint.ComponentsClasses where
 import React (ReactClass)
 
 foreign import alertClass :: forall props. ReactClass props
-foreign import breadcrumbClass :: forall props. ReactClass props
+-- SFC
+-- foreign import breadcrumbClass :: forall props. ReactClass props
 foreign import buttonClass :: forall props. ReactClass props
 foreign import anchorButtonClass :: forall props. ReactClass props
 foreign import collapseClass :: forall props. ReactClass props
