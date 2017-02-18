@@ -1,37 +1,37 @@
 module Blueprint.Components.Menu where
 
+import Blueprint.ComponentsClasses (menuClass, menuDividerClass, menuItemClass)
+import Blueprint.PropTypes (ActionPropsEx, ComponentORString, Prop, PropsEx)
 import React
-import Blueprint.PropTypes
-import Blueprint.ComponentsClasses
 
-type IMenuItemProps = IMenuItemPropsEx ()
+type MenuItemProps = MenuItemPropsEx ()
 
-type IMenuItemPropsEx r = IActionPropsEx ( href :: String
-                                         , target :: String
-                                         , text ::  String
-                                         , label :: ComponentORString
-                                         , shouldDismissPopover :: Boolean
--- handling submenu props                , submenu :: Array IMenuItemProps
-                                         , submenuViewportMargin :: { left :: Int, right :: Int }
-                                         , useSmartPositioning :: Boolean
-                                         | r
-                                         )
+type MenuItemPropsEx r = ActionPropsEx
+  ( href :: String
+  , target :: String
+  , text ::  String
+  , label :: ComponentORString
+  , shouldDismissPopover :: Boolean
+  -- handling submenu props
+  -- , submenu :: Array IMenuItemProps
+  , submenuViewportMargin :: { left :: Int, right :: Int }
+  , useSmartPositioning :: Boolean
+  | r
+  )
 
-type IMenuProps = IMenuPropsEx ()
+type MenuProps = MenuPropsEx ()
 
-type IMenuPropsEx r = IPropsEx r
+type MenuPropsEx r = PropsEx r
 
-type IMenuDividerProps = IMenuDividerPropsEx ()
+type MenuDividerProps = MenuDividerPropsEx ()
 
-type IMenuDividerPropsEx r = IPropsEx (title :: String | r)
+type MenuDividerPropsEx r = PropsEx (title :: String | r)
 
-menu :: Prop IMenuProps -> Array ReactElement -> ReactElement
+menu :: Prop MenuProps -> Array ReactElement -> ReactElement
 menu = createElement menuClass
 
-
-menuDevider  :: Prop IMenuDividerProps -> ReactElement
+menuDevider  :: Prop MenuDividerProps -> ReactElement
 menuDevider p = createElement menuDividerClass p []
 
-
-menuItem :: Prop IMenuDividerProps -> ReactElement
+menuItem :: Prop MenuDividerProps -> ReactElement
 menuItem p = createElement menuItemClass p []

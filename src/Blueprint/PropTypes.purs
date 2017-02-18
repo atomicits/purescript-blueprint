@@ -14,58 +14,65 @@ type UnknownJSXElementType = {}
 
 type UnknownFunctionType = {} -- () => void;
 
-
 type Prop a = a -> a
 
 newtype Intent = Intent Int
 
-intent :: { none    :: Intent
-          , primary :: Intent
-          , success :: Intent
-          , warning :: Intent
-          , danger  :: Intent
-          }
-intent = { none    : Intent (-1)
-         , primary : Intent 0
-         , success : Intent 1
-         , warning : Intent 2
-         , danger  : Intent 3
-         }
+-- DISCUSS: do we want to use / access these values as intent.none, intent.primary or just none, primary?
+intent ::
+  { none :: Intent
+  , primary :: Intent
+  , success :: Intent
+  , warning :: Intent
+  , danger :: Intent
+  }
+intent =
+  { none : Intent (-1)
+  , primary : Intent 0
+  , success : Intent 1
+  , warning : Intent 2
+  , danger : Intent 3
+  }
 
-type IPrpos r = IPropsEx ()
+-- TODO: Lets discard using prefix of I. I was used in TypeScript as a way to specify Interface!
+-- DISCUSS: I think r here is not necessary?
+type Prpos r = PropsEx ()
 
-type IPropsEx r = { className :: String | r }
+-- DISCUSS: Do we need this to be extensible?
+type PropsEx r = { className :: String | r }
 
-type IIntentProps = IIntentPropsEx ()
+type IntentProps = IntentPropsEx ()
 
+type IntentPropsEx r = { intent :: Intent | r }
 
-type IIntentPropsEx r = { intent :: Intent | r }
+type ActionProps = ActionPropsEx ()
 
+type ActionPropsEx r =
+  { disabled :: Boolean
+  , iconName :: String
+  , onClick :: UnknownEventType
+  , text :: String
+  , intent :: Intent
+  , className :: String
+  | r
+  }
 
-type IActionProps = IActionPropsEx ()
-type IActionPropsEx r = { disabled :: Boolean
-                        , iconName :: String
-                        , onClick :: UnknownEventType
-                        , text :: String
-                        , intent :: Intent
-                        , className :: String
-                        | r
-                        }
+type LinkProps = LinkPropsEx ()
 
-type ILinkProps = ILinkPropsEx ()
+type LinkPropsEx r =
+  { href :: String
+  , target :: String
+  | r
+  }
 
-type ILinkPropsEx r = { href :: String
-                      , target :: String
-                      | r
-                      }
+data ComponentORString
+  = String
+  | UnknownJSXElementType
 
-
-data ComponentORString = String | UnknownJSXElementType
-
-
-type ITetherConstraint = { attachment :: String
-                         , outOfBoundsClass :: String
-                         , pin :: ComponentORString -- Boolean | Array String
-                         , pinnedClass :: String
-                         , to :: ComponentORString --- String | UnknownReactType | Array Int
-                         }
+type TetherConstraint =
+  { attachment :: String
+  , outOfBoundsClass :: String
+  , pin :: ComponentORString -- Boolean | Array String
+  , pinnedClass :: String
+  , to :: ComponentORString --- String | UnknownReactType | Array Int
+  }

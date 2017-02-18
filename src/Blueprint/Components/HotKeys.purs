@@ -1,24 +1,28 @@
 module Blueprint.Ccomponents.Hotkeys where
 
-import Blueprint.PropTypes
-import Blueprint.ComponentsClasses
+import Blueprint.ComponentsClasses (hotkeyClass, hotkeysClass)
+import Blueprint.PropTypes (Prop, PropsEx, UnknownEventType)
 import React
 
-type IHotkeysProps = IHotkeysPropsEx ()
-type IHotkeysPropsEx r = IPropsEx (tabIndex :: Int | r)
+-- DISCUSS: Do we need this to be extensible?
+type HotkeysProps = HotkeysPropsEx ()
 
-type IHotkeyProps = { combo :: String
+type HotkeysPropsEx r = PropsEx
+  ( tabIndex :: Int
+  | r
+  )
 
-                    , label :: String
-                    , global :: Boolean
-                    , group :: String
-                    , onKeyDown :: UnknownEventType
-                    , onKeyUp :: UnknownEventType
-                    }
+type HotkeyProps =
+  { combo :: String
+  , label :: String
+  , global :: Boolean
+  , group :: String
+  , onKeyDown :: UnknownEventType
+  , onKeyUp :: UnknownEventType
+  }
 
-hotkey :: Prop IHotkeyProps -> Array ReactElement -> ReactElement
+hotkey :: Prop HotkeyProps -> Array ReactElement -> ReactElement
 hotkey = createElement hotkeyClass
 
-
-hotkeys :: Prop IHotkeysProps -> Array ReactElement -> ReactElement
+hotkeys :: Prop HotkeysProps -> Array ReactElement -> ReactElement
 hotkeys = createElement hotkeysClass

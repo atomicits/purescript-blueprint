@@ -5,23 +5,24 @@ import React.DOM as RD
 import React.DOM.Props as RP
 import React (ReactElement)
 
-newtype CalloutModifiers = CalloutModifiers String
+newtype CalloutModifier = CalloutModifier String
 
-calloutModifiers :: { primary  :: CalloutModifiers
-                    , success  :: CalloutModifiers
-                    , warning  :: CalloutModifiers
-                    , danger   :: CalloutModifiers
-                    , withIcon :: CalloutModifiers
-                    }
+-- DISCUSS: record access? or direct primary? using Enum ClassTypes?
+calloutModifiers ::
+  { primary  :: CalloutModifier
+  , success  :: CalloutModifier
+  , warning  :: CalloutModifier
+  , danger   :: CalloutModifier
+  , withIcon :: CalloutModifier
+  }
+calloutModifiers =
+  { primary  :  CalloutModifier "pt-intent-primary"
+  , success  :  CalloutModifier "pt-intent-success"
+  , warning  :  CalloutModifier "pt-intent-warning"
+  , danger   :  CalloutModifier "pt-intent-danger"
+  , withIcon :  CalloutModifier "pt-icon-info-sign"
+  }
 
-calloutModifiers = { primary  :  CalloutModifiers "pt-intent-primary"
-                   , success  :  CalloutModifiers "pt-intent-success"
-                   , warning  :  CalloutModifiers "pt-intent-warning"
-                   , danger   :  CalloutModifiers "pt-intent-danger"
-                   , withIcon :  CalloutModifiers "pt-icon-info-sign"
-                   }
-
-
-callout :: CalloutModifiers -> Array ReactElement -> ReactElement
-callout (CalloutModifiers m) c =
+callout :: CalloutModifier -> Array ReactElement -> ReactElement
+callout (CalloutModifier m) c =
   RD.div [ RP.className $ "pt-callout " <> m ] c

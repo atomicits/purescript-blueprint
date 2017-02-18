@@ -4,6 +4,7 @@ import React (ReactClass)
 
 foreign import alertClass :: forall props. ReactClass props
 
+-- DISCUSS: Please describe what would you like to discuss? so that its easy for me to answer!
 -- SFC need to discuss
 foreign import breadcrumbClass :: forall props. ReactClass props
 
@@ -34,6 +35,7 @@ foreign import inputGroupClass :: forall props. ReactClass props
 
 foreign import hotkeyClass :: forall props. ReactClass props
 foreign import hotkeysClass :: forall props. ReactClass props
+
 -- need to discuss
 foreign import hotkeysTargetClass :: forall props. ReactClass props
 
