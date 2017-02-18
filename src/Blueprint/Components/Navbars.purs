@@ -1,43 +1,41 @@
 module Blueprint.Components.Navbars where
 
 import Prelude
+
+import React (ReactElement)
 import React.DOM as RD
 import React.DOM.Props as RP
-import React (ReactElement)
 
-newtype NavbarsModifiers = NavbarsModifiers String
-newtype NavbarGroupModifiers = NavbarGroupModifiers String
+newtype NavbarModifier = NavbarModifier String
 
-navbarModifiers :: { dark  :: NavbarsModifiers
-                   , default :: NavbarsModifiers
-                   }
+newtype NavbarGroupModifier = NavbarGroupModifier String
 
-navbarModifiers = { dark  : NavbarsModifiers "pt-dark"
-                  , default : NavbarsModifiers ""
-                  }
+navbarModifiers ::
+  { dark  :: NavbarModifier
+  , default :: NavbarModifier -- TODO: lets avoid keywords
+  }
+navbarModifiers =
+  { dark  : NavbarModifier "pt-dark"
+  , default : NavbarModifier "" -- TODO: avoid keywords
+  }
 
+navbarGroupModifiers ::
+  { alignRight  :: NavbarGroupModifier
+  , alignLeft :: NavbarGroupModifier
+  }
+navbarGroupModifiers =
+  { alignRight  : NavbarGroupModifier "pt-align-right"
+  , alignLeft : NavbarGroupModifier "pt-align-left"
+  }
 
-navbarGroupModifiers :: { align_right  :: NavbarGroupModifiers
-                   , align_left :: NavbarGroupModifiers
-                   }
+navBar :: NavbarModifier -> Array ReactElement -> ReactElement
+navBar (NavbarModifier m) c = RD.nav [RP.className $ "pt-navBar " <> m ] c
 
-navbarGroupModifiers = { align_right  : NavbarGroupModifiers "pt-align-right"
-                  , align_left : NavbarGroupModifiers  "pt-align-left"
-                  }
+fixedNavBar :: NavbarModifier -> Array ReactElement -> ReactElement
+fixedNavBar (NavbarModifier m) c = RD.nav [RP.className $ "pt-navBar pt-fixed-top " <> m ] c
 
-
-navBar :: NavbarsModifiers -> Array ReactElement -> ReactElement
-navBar (NavbarsModifiers m) c = RD.nav [RP.className $ "pt-navBar " <> m ] c
-
-
-fixedNavBar :: NavbarsModifiers -> Array ReactElement -> ReactElement
-fixedNavBar (NavbarsModifiers m) c = RD.nav [RP.className $ "pt-navBar pt-fixed-top " <> m ] c
-
-
-
-navBarGroup :: NavbarGroupModifiers -> Array ReactElement -> ReactElement
-navBarGroup (NavbarGroupModifiers m) c = RD.nav [RP.className $ "pt-navbar-group " <> m ] c
-
+navBarGroup :: NavbarGroupModifier -> Array ReactElement -> ReactElement
+navBarGroup (NavbarGroupModifier m) c = RD.nav [RP.className $ "pt-navbar-group " <> m ] c
 
 navBarDivider ::  ReactElement
 navBarDivider = RD.span [ RP.className "pt-navbar-divider"] []

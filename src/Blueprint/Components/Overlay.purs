@@ -1,35 +1,35 @@
 module Blueprint.Components.Overlay where
 
-
-import Blueprint.PropTypes
-import React (ReactElement, createElement)
 import Blueprint.ComponentsClasses (overlayClass)
+import Blueprint.PropTypes (Prop, UnknownEventType, UnknownFunctionType, UnknownJSXElementType)
+import React
 
-type IOverLayableProps = IOverLayablePropsEx ()
+type OverLayableProps = OverLayablePropsEx ()
 
-type IOverLayablePropsEx r = { autoFocus :: Boolean
-                             , canEscapeKeyClose :: Boolean
-                             , enforceFocus :: Boolean
-                             , inline :: Boolean
-                             , lazy :: Boolean
-                             , transitionDuration :: Int
-                             , onClose :: UnknownEventType
-                            | r
-                            }
+type OverLayablePropsEx r =
+  { autoFocus :: Boolean
+  , canEscapeKeyClose :: Boolean
+  , enforceFocus :: Boolean
+  , inline :: Boolean
+  , lazy :: Boolean
+  , transitionDuration :: Int
+  , onClose :: UnknownEventType
+  | r
+  }
 
-type IOverlayProps = IOverlayPropsEx ()
+type OverlayProps = OverlayPropsEx ()
 
-type IOverlayPropsEx r =  IOverLayablePropsEx ( className :: String
-                         , backdropClassName :: String
-                         , backdropProps :: UnknownJSXElementType
-                         , canOutsideClickClose :: Boolean
-                         , hasBackdrop :: Boolean
-                         , didOpen :: UnknownFunctionType -- () => any;
-                         , isOpen :: Boolean
-                         , transitionName :: String
-                         | r
-                         )
+type OverlayPropsEx r = OverLayablePropsEx
+  ( className :: String
+  , backdropClassName :: String
+  , backdropProps :: UnknownJSXElementType
+  , canOutsideClickClose :: Boolean
+  , hasBackdrop :: Boolean
+  , didOpen :: UnknownFunctionType -- () => any;
+  , isOpen :: Boolean
+  , transitionName :: String
+  | r
+  )
 
-
-overlay :: Prop IOverlayProps -> Array ReactElement -> ReactElement
+overlay :: Prop OverlayProps -> Array ReactElement -> ReactElement
 overlay = createElement overlayClass

@@ -5,22 +5,21 @@ import React.DOM as RD
 import React.DOM.Props as RP
 import React (ReactElement)
 
-newtype TableHtmlModifiers = TableHtmlModifiers String
+newtype TableHtmlModifier = TableHtmlModifier String
 
-tableHtmlModifiers :: { condensed  :: TableHtmlModifiers
-                      , striped  :: TableHtmlModifiers
-                      , bordered  :: TableHtmlModifiers
-                      , interactive   :: TableHtmlModifiers
-                      }
+tableHtmlModifiers ::
+  { condensed  :: TableHtmlModifier
+  , striped  :: TableHtmlModifier
+  , bordered  :: TableHtmlModifier
+  , interactive   :: TableHtmlModifier
+  }
+tableHtmlModifiers =
+  { condensed  : TableHtmlModifier ".pt-condensed"
+  , striped  : TableHtmlModifier ".pt-striped"
+  , bordered  : TableHtmlModifier ".pt-bordered"
+  , interactive : TableHtmlModifier ".pt-interactive"
+  }
 
-tableHtmlModifiers = { condensed  : TableHtmlModifiers ".pt-condensed"
-                      , striped  : TableHtmlModifiers ".pt-striped"
-                      , bordered  : TableHtmlModifiers ".pt-bordered"
-                      , interactive : TableHtmlModifiers ".pt-interactive"
-                      }
-
-
-
-tableHtlm :: TableHtmlModifiers -> Array ReactElement -> ReactElement
-tableHtlm (TableHtmlModifiers m) c =
+tableHtml :: TableHtmlModifier -> Array ReactElement -> ReactElement
+tableHtml (TableHtmlModifier m) c =
   RD.table [ RP.className $ "pt-table " <> m ] c
