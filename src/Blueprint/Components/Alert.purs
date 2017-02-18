@@ -4,6 +4,7 @@ import React
 import Blueprint.ComponentsClasses (alertClass)
 import Blueprint.PropTypes
 
+
 type AlertProps  = AlertPropsEx ()
 
 type AlertPropsEx  r  = IPropsEx ( cancelButtonText :: String
