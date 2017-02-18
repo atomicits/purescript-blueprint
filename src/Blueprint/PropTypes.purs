@@ -8,9 +8,12 @@ type UnknownEventType = {}
 
 type UnknownRefType = {}
 
-type UnkonwnReactType = {}
+type UnknownReactType = {}
 
-type UnkonwnJSXElementType = {}
+type UnknownJSXElementType = {}
+
+type UnknownFunctionType = {} -- () => void;
+
 
 type Prop a = a -> a
 
@@ -33,4 +36,36 @@ type IPrpos r = IPropsEx ()
 
 type IPropsEx r = { className :: String | r }
 
-data ComponentOrString = String | UnkonwnJSXElementType
+type IIntentProps = IIntentPropsEx ()
+
+
+type IIntentPropsEx r = { intent :: Intent | r }
+
+
+type IActionProps = IActionPropsEx ()
+type IActionPropsEx r = { disabled :: Boolean
+                        , iconName :: String
+                        , onClick :: UnknownEventType
+                        , text :: String
+                        , intent :: Intent
+                        , className :: String
+                        | r
+                        }
+
+type ILinkProps = ILinkPropsEx ()
+
+type ILinkPropsEx r = { href :: String
+                      , target :: String
+                      | r
+                      }
+
+
+data ComponentORString = String | UnknownJSXElementType
+
+
+type ITetherConstraint = { attachment :: String
+                         , outOfBoundsClass :: String
+                         , pin :: ComponentORString -- Boolean | Array String
+                         , pinnedClass :: String
+                         , to :: ComponentORString --- String | UnknownReactType | Array Int
+                         }

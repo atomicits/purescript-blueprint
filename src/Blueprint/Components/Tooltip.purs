@@ -1,15 +1,15 @@
 module Blueprint.Components.Tooltip where
 
-import React (ReactElement, createElement)
 import Blueprint.ComponentsClasses (tooltipClass)
-import Blueprint.PropTypes (ComponentOrString, IPropsEx, Prop)
+import Blueprint.PropTypes (ComponentORString, IPropsEx, Prop)
+import React (ReactElement, createElement)
 
 
 --- export interface ITooltipProps extends IProps, IIntentProps
 
 type TooltipProps = TooltipPropsEx ()
 
-type TooltipPropsEx r = IPropsEx ( content :: ComponentOrString
+type TooltipPropsEx r = IPropsEx ( content :: ComponentORString
                                  , constraints :: String                     --- TODO --ITetherConstraint []
                                  , defaultIsOpen :: Boolean
                                  , hoverCloseDelay :: Number
