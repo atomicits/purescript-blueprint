@@ -1,10 +1,16 @@
 module Blueprint.PropTypes where
 
-import Prelude
+import Prelude (negate)
 
-type UnknownStyleProps = {}
+type UnknownStyleType = {}
 
-type UnknownEventProps = {}
+type UnknownEventType = {}
+
+type UnknownRefType = {}
+
+type UnkonwnReactType = {}
+
+type UnkonwnJSXElementType = {}
 
 type Prop a = a -> a
 
@@ -26,3 +32,5 @@ intent = { none    : Intent (-1)
 type IPrpos r = IPropsEx ()
 
 type IPropsEx r = { className :: String | r }
+
+data ComponentOrString = String | UnkonwnJSXElementType

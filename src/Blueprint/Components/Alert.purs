@@ -2,7 +2,8 @@ module Blueprint.Components.Alert where
 
 import React
 import Blueprint.ComponentsClasses (alertClass)
-import Blueprint.PropTypes (IPropsEx, Intent, Prop, UnknownEventProps, UnknownStyleProps)
+import Blueprint.PropTypes (IPropsEx, Intent, Prop, UnknownEventType, UnknownStyleType)
+
 
 type AlertProps  = AlertPropsEx ()
 
@@ -11,9 +12,9 @@ type AlertPropsEx  r  = IPropsEx ( cancelButtonText :: String
                                  , iconName :: String
                                  , intent :: Intent
                                  , isOpen :: Boolean
-                                 , style :: UnknownStyleProps
-                                 , onCancel ::  UnknownEventProps
-                                 , onConfirm :: UnknownEventProps
+                                 , style :: UnknownStyleType
+                                 , onCancel ::  UnknownEventType
+                                 , onConfirm :: UnknownEventType
                                  | r
                                  )
 
