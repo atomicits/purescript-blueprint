@@ -6,9 +6,9 @@ import React (ReactElement, createElement)
 
 --- export interface ITooltipProps extends IProps, IIntentProps
 
-type TooltipProps = TooltipPropsEx ()
+type ToolTipProps = ToolTipPropsEx ()
 
-type TooltipPropsEx r = PropsEx
+type ToolTipPropsEx r = PropsEx
   ( content :: ComponentORString
   , constraints :: String                     --- TODO --ITetherConstraint []
   , defaultIsOpen :: Boolean
@@ -28,5 +28,5 @@ type TooltipPropsEx r = PropsEx
   | r
   )
 
-tooltip :: Prop TooltipProps -> Array ReactElement -> ReactElement
+tooltip :: Prop ToolTipProps -> Array ReactElement -> ReactElement
 tooltip = createElement tooltipClass
