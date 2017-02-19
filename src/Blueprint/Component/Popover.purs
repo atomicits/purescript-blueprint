@@ -1,11 +1,11 @@
-module Blueprint.Components.Popover where
+module Blueprint.Component.Popover where
 
 import Prelude
+
+import Blueprint.Component.Overlay (OverLayablePropsEx)
+import Blueprint.ComponentClass (popoverClass)
+import Blueprint.Type (ComponentORString, Position, Prop, TetherConstraint, UnknownFunctionType, UnknownReactType)
 import React (ReactElement, createElement)
-import Blueprint.ComponentsClasses (popoverClass)
-import Blueprint.PropTypes (ComponentORString, TetherConstraint, Prop, UnknownFunctionType, UnknownReactType)
-import Bluprint.CommonTypes (Position)
-import Blueprint.Components.Overlay (OverLayablePropsEx)
 
 type PopoverProps = PopoverPropsEx ()
 

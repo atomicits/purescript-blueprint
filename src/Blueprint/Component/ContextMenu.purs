@@ -1,3 +1,1 @@
-module Blueprint.Components.ContextMenu where
-
-import React
+module Blueprint.Component.ContextMenu where

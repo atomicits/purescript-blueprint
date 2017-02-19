@@ -1,7 +1,7 @@
-module Blueprint.Components.Overlay where
+module Blueprint.Component.Overlay where
 
-import Blueprint.ComponentsClasses (overlayClass)
-import Blueprint.PropTypes (Prop, UnknownEventType, UnknownFunctionType, UnknownJSXElementType)
+import Blueprint.ComponentClass (overlayClass)
+import Blueprint.Type (Prop, UnknownEventType, UnknownFunctionType, UnknownJSXElementType)
 import React
 
 type OverLayableProps = OverLayablePropsEx ()

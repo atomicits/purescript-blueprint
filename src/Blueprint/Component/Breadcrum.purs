@@ -1,6 +1,6 @@
-module Blueprint.Components.Breadcrums where
+module Blueprint.Component.Breadcrum where
 
-import Blueprint.PropTypes
+import Blueprint.Type
 
 -- DISCUSS: What should the module name be?
 --- BreadcrumProps is extender from IAction and ILink

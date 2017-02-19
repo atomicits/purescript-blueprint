@@ -1,9 +1,9 @@
-module Blueprint.Components.Slider where
+module Blueprint.Component.Slider where
 
 import Prelude
 
-import Blueprint.ComponentsClasses (sliderClass)
-import Blueprint.PropTypes (PropsEx, Prop)
+import Blueprint.ComponentClass (sliderClass)
+import Blueprint.Type (PropsEx, Prop)
 import React (ReactElement, createElement)
 
 type SliderProps = SliderPropsEx ()

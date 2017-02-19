@@ -1,1 +1,1 @@
-module Blueprint.Components.DateTime where
+module Blueprint.Component.DateTime where

@@ -1,9 +1,9 @@
-module Blueprint.Components.CollapsibleList where
+module Blueprint.Component.CollapsibleList where
 
-import Blueprint.Components.Menu (MenuItemProps)
-import Blueprint.Components.Popover (PopoverProps)
-import Blueprint.ComponentsClasses (collapsibleListClass)
-import Blueprint.PropTypes (PropsEx, Prop, UnknownJSXElementType)
+import Blueprint.Component.Menu (MenuItemProps)
+import Blueprint.Component.Popover (PopoverProps)
+import Blueprint.ComponentClass (collapsibleListClass)
+import Blueprint.Type (PropsEx, Prop, UnknownJSXElementType)
 import React
 
 newtype CollapseForm = CollapseForm Int

@@ -1,8 +1,8 @@
-module Bluprint.Components.Dialog where
+module Blueprint.Component.Dialog where
 
-import Blueprint.Components.Overlay (OverLayablePropsEx)
-import Blueprint.ComponentsClasses (dialogClass)
-import Blueprint.PropTypes (ComponentORString, Prop, UnknownReactType, UnknownStyleType)
+import Blueprint.Component.Overlay (OverLayablePropsEx)
+import Blueprint.ComponentClass (dialogClass)
+import Blueprint.Type (ComponentORString, Prop, UnknownReactType, UnknownStyleType)
 import React
 
 type DialogProps = DialogPropsEx ()

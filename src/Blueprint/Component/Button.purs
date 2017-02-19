@@ -1,7 +1,7 @@
-module Blueprint.Components.Button where
+module Blueprint.Component.Button where
 
-import Blueprint.ComponentsClasses (anchorButtonClass, buttonClass)
-import Blueprint.PropTypes (ActionPropsEx, Prop, UnknownRefType)
+import Blueprint.ComponentClass (anchorButtonClass, buttonClass)
+import Blueprint.Type (ActionPropsEx, Prop, UnknownRefType)
 import React
 
 type ButtonProps =  ButtonPropsEx ()

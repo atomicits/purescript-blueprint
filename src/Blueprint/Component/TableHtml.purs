@@ -1,6 +1,7 @@
-module Blueprint.Components.TableHtml where
+module Blueprint.Component.TableHtml where
 
 import Prelude
+
 import React.DOM as RD
 import React.DOM.Props as RP
 import React (ReactElement)

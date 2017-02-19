@@ -1,7 +1,7 @@
-module Blueprint.Ccomponents.Hotkeys where
+module Blueprint.Component.Hotkeys where
 
-import Blueprint.ComponentsClasses (hotkeyClass, hotkeysClass)
-import Blueprint.PropTypes (Prop, PropsEx, UnknownEventType)
+import Blueprint.ComponentClass (hotkeyClass, hotkeysClass)
+import Blueprint.Type (Prop, PropsEx, UnknownEventType)
 import React
 
 -- DISCUSS: Do we need this to be extensible?
