@@ -1,4 +1,4 @@
-module Blueprint.Component.ButonGroup where
+module Blueprint.Component.ButtonGroup where
 
 import Prelude
 
