@@ -1,7 +1,7 @@
-module Blueprint.Components.Spinner where
+module Blueprint.Component.Spinner where
 
-import Blueprint.ComponentsClasses (spinnerClass)
-import Blueprint.PropTypes (PropsEx, Prop)
+import Blueprint.ComponentClass (spinnerClass)
+import Blueprint.Type (PropsEx, Prop)
 import React (ReactElement, createElement)
 
 --- export interface ISpinnerProps extends IProps, IIntentProps {

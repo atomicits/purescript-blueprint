@@ -1,7 +1,7 @@
-module Blueprint.Components.Alert where
+module Blueprint.Component.Alert where
 
-import Blueprint.ComponentsClasses (alertClass)
-import Blueprint.PropTypes (Intent, Prop, PropsEx, UnknownEventType, UnknownStyleType)
+import Blueprint.ComponentClass (alertClass)
+import Blueprint.Type (Intent, Prop, PropsEx, UnknownEventType, UnknownStyleType)
 import React
 
 type AlertProps = AlertPropsEx ()

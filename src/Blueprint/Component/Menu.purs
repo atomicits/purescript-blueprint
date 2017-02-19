@@ -1,7 +1,7 @@
-module Blueprint.Components.Menu where
+module Blueprint.Component.Menu where
 
-import Blueprint.ComponentsClasses (menuClass, menuDividerClass, menuItemClass)
-import Blueprint.PropTypes (ActionPropsEx, ComponentORString, Prop, PropsEx)
+import Blueprint.ComponentClass (menuClass, menuDividerClass, menuItemClass)
+import Blueprint.Type (ActionPropsEx, ComponentORString, Prop, PropsEx)
 import React
 
 type MenuItemProps = MenuItemPropsEx ()

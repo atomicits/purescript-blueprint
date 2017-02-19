@@ -1,7 +1,7 @@
-module Blueprint.Components.NonIdealState where
+module Blueprint.Component.NonIdealState where
 
-import Blueprint.ComponentsClasses (nonIdealStateClass)
-import Blueprint.PropTypes (ComponentORString, Prop, PropsEx, UnknownJSXElementType)
+import Blueprint.ComponentClass (nonIdealStateClass)
+import Blueprint.Type (ComponentORString, Prop, PropsEx, UnknownJSXElementType)
 import React
 
 type NonIdealStateProps = NonIdealStatePropsEx ()

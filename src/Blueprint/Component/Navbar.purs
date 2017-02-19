@@ -1,4 +1,4 @@
-module Blueprint.Components.Navbars where
+module Blueprint.Component.Navbar where
 
 import Prelude
 
@@ -10,20 +10,20 @@ newtype NavbarModifier = NavbarModifier String
 
 newtype NavbarGroupModifier = NavbarGroupModifier String
 
-navbarModifiers ::
+navbarModifier ::
   { dark  :: NavbarModifier
   , default :: NavbarModifier -- TODO: lets avoid keywords
   }
-navbarModifiers =
+navbarModifier =
   { dark  : NavbarModifier "pt-dark"
   , default : NavbarModifier "" -- TODO: avoid keywords
   }
 
-navbarGroupModifiers ::
+navbarGroupModifier ::
   { alignRight  :: NavbarGroupModifier
   , alignLeft :: NavbarGroupModifier
   }
-navbarGroupModifiers =
+navbarGroupModifier =
   { alignRight  : NavbarGroupModifier "pt-align-right"
   , alignLeft : NavbarGroupModifier "pt-align-left"
   }

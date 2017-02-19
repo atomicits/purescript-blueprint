@@ -1,9 +1,9 @@
-module Blueprint.Components.EditableText where
+module Blueprint.Component.EditableText where
 
 import Prelude
 
-import Blueprint.ComponentsClasses (editableTextClass)
-import Blueprint.PropTypes (Intent, Prop, UnknownEventType)
+import Blueprint.ComponentClass (editableTextClass)
+import Blueprint.Type (Intent, Prop, UnknownEventType)
 import React (ReactElement, createElement)
 
 type EditableTextProps =

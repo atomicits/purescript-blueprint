@@ -1,7 +1,7 @@
-module Blueprint.Components.Tag where
+module Blueprint.Component.Tag where
 
-import Blueprint.ComponentsClasses (tagClass)
-import Blueprint.PropTypes
+import Blueprint.ComponentClass (tagClass)
+import Blueprint.Type
 import React (ReactElement, createElement)
 
 -- export interface ITagProps extends IProps, IIntentProps, React.HTMLProps<HTMLSpanElement> {

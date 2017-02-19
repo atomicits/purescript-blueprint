@@ -1,4 +1,4 @@
-module Blueprint.ComponentsClasses where
+module Blueprint.ComponentClass where
 
 import React (ReactClass)
 

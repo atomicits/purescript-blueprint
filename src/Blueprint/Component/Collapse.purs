@@ -1,7 +1,7 @@
-module Blueprint.Components.Collapse where
+module Blueprint.Component.Collapse where
 
-import Blueprint.ComponentsClasses (collapseClass)
-import Blueprint.PropTypes (Prop, PropsEx, UnknownReactType)
+import Blueprint.ComponentClass (collapseClass)
+import Blueprint.Type (Prop, PropsEx, UnknownReactType)
 import React
 
 type CollapseProps = CollapsePropsEx ()

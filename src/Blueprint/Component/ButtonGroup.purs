@@ -1,5 +1,4 @@
-module Blueprint.Components.ButonGroup where
-
+module Blueprint.Component.ButonGroup where
 
 import Prelude
 
@@ -11,7 +10,7 @@ import React.DOM.Props as RP
 newtype ButtonGroupModifier = ButtonGroupModifier String
 
 -- DISCUSS: should we use large, minimal,... directly? instead of record access?
-buttonGroupModifiers ::
+buttonGroupModifier ::
   { large :: ButtonGroupModifier
   , minimal :: ButtonGroupModifier
   , fill :: ButtonGroupModifier
@@ -19,7 +18,7 @@ buttonGroupModifiers ::
   , alignLeft :: ButtonGroupModifier
   , alignRight :: ButtonGroupModifier
   }
-buttonGroupModifiers =
+buttonGroupModifier =
   { large : ButtonGroupModifier "pt-large"
   , minimal : ButtonGroupModifier "pt-minimal"
   , fill : ButtonGroupModifier "pt-fill"

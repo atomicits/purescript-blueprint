@@ -1,7 +1,7 @@
-module Blueprint.Components.Tooltip where
+module Blueprint.Component.Tooltip where
 
-import Blueprint.ComponentsClasses (tooltipClass)
-import Blueprint.PropTypes (ComponentORString, PropsEx, Prop)
+import Blueprint.ComponentClass (tooltipClass)
+import Blueprint.Type (ComponentORString, PropsEx, Prop)
 import React (ReactElement, createElement)
 
 --- export interface ITooltipProps extends IProps, IIntentProps

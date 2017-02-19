@@ -1,21 +1,22 @@
-module Blueprint.Components.Callouts where
+module Blueprint.Component.Callouts where
 
 import Prelude
+
+import React (ReactElement)
 import React.DOM as RD
 import React.DOM.Props as RP
-import React (ReactElement)
 
 newtype CalloutModifier = CalloutModifier String
 
 -- DISCUSS: record access? or direct primary? using Enum ClassTypes?
-calloutModifiers ::
+calloutModifier ::
   { primary  :: CalloutModifier
   , success  :: CalloutModifier
   , warning  :: CalloutModifier
   , danger   :: CalloutModifier
   , withIcon :: CalloutModifier
   }
-calloutModifiers =
+calloutModifier =
   { primary  :  CalloutModifier "pt-intent-primary"
   , success  :  CalloutModifier "pt-intent-success"
   , warning  :  CalloutModifier "pt-intent-warning"
