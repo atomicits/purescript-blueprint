@@ -1,4 +1,4 @@
-module Blueprint.Component.Callouts where
+module Blueprint.Component.Callout where
 
 import Prelude
 
