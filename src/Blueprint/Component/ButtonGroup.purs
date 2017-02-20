@@ -43,11 +43,11 @@ buttonGroup (ButtonGroupModifier m) c =
 
 buttonGroupResponsive :: ButtonGroupModifier -> Array ReactElement -> ReactElement
 buttonGroupResponsive (ButtonGroupModifier m) c =
-  RD.div [ RP.className $ "pt-button-group pt-fill" <> m ] c
+  RD.div [ RP.className $ "pt-button-group pt-fill " <> m ] c
 
 buttonGroupVertical :: ButtonGroupModifier -> Array ReactElement -> ReactElement
 buttonGroupVertical (ButtonGroupModifier m) c =
-  RD.div [ RP.className $ "pt-button-group pt-vertical" <> m ] c
+  RD.div [ RP.className $ "pt-button-group pt-vertical " <> m ] c
 
 buttonGroupCustom :: Array ButtonGroupModifier -> Array ReactElement -> ReactElement
 buttonGroupCustom ms c =

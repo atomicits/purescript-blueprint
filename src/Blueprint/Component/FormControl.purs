@@ -1,9 +1,11 @@
 module Blueprint.Component.FormControl where
 
-import Prelude (Unit)
 import React
 import Blueprint.Type
 import Blueprint.Event (EventHandler)
+import Prelude
+import React.DOM as RD
+import React.DOM.Props as RP
 
 type FormControlProps = FormControlPropsEx ()
 
@@ -84,14 +86,6 @@ type FormControlPropsEx r = PropsEx
 -- switchlarge :: SwitchModifier
 -- switchlarge = SwitchModifier "pt-large"
 
--- newtype TextInputModifier = TextInputModifier String
-
--- textInputDisabled :: TextInputModifier
--- textInputDisabled = TextInputModifier "disabled"
-
--- textInputReadonly :: TextInputModifier
--- textInputReadonly = TextInputModifier "readonly"
-
 -- textInputRoundedends :: TextInputModifier
 -- textInputRoundedends = TextInputModifier "pt-round"
 
@@ -112,3 +106,60 @@ type FormControlPropsEx r = PropsEx
 
 -- textInputfill :: TextInputModifier
 -- textInputfill = TextInputModifier "pt-fill"
+
+newtype TextInputModifier = TextInputModifier String
+
+textInputDisabled :: TextInputModifier
+textInputDisabled = TextInputModifier "disabled"
+
+textInputReadonly :: TextInputModifier
+textInputReadonly = TextInputModifier "readonly"
+
+
+textInputModifier ::
+  { textInputRoundedends :: TextInputModifier
+  , textInputLarge :: TextInputModifier
+  , textInputPrimary :: TextInputModifier
+  , textInputSuccess :: TextInputModifier
+  , textInputWarning :: TextInputModifier
+  , textInputDanger :: TextInputModifier
+  , textInputFill :: TextInputModifier
+  }
+textInputModifier =
+  { textInputRoundedends : TextInputModifier "pt-round"
+  , textInputLarge       : TextInputModifier "pt-large"
+  , textInputPrimary     : TextInputModifier "pt-intent-primary"
+  , textInputSuccess     : TextInputModifier "pt-intent-success"
+  , textInputWarning     : TextInputModifier "pt-intent-warning"
+  , textInputDanger      : TextInputModifier "pt-intent-danger"
+  , textInputFill        :  TextInputModifier "pt-fill"
+  }
+
+
+newtype TextAreaModifier = TextAreaModifier String
+
+textAreaDisabled :: TextAreaModifier
+textAreaDisabled = TextAreaModifier "disabled"
+
+textAreaReadonly :: TextAreaModifier
+textAreaReadonly = TextAreaModifier "readonly"
+
+textAreaModifier ::
+  { textAreaLarge :: TextAreaModifier
+  , textAreaPrimary :: TextAreaModifier
+  , textAreaDanger :: TextAreaModifier
+  , textAreaFill :: TextAreaModifier
+  }
+textAreaModifier =
+  { textAreaLarge       : TextAreaModifier "pt-large"
+  , textAreaPrimary     : TextAreaModifier "pt-intent-primary"
+  , textAreaDanger      : TextAreaModifier "pt-intent-danger"
+  , textAreaFill        : TextAreaModifier "pt-fill"
+  }
+
+
+
+
+textInput :: TextInputModifier -> Array ReactElement -> ReactElement
+textInput (TextInputModifier m) c =
+  RD.div [ RP.className $ "pt-input " <> m] c
