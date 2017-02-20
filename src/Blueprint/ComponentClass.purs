@@ -1,38 +1,56 @@
-module Blueprint.ComponentsClasses where
+module Blueprint.ComponentClass where
 
 import React (ReactClass)
 
 foreign import alertClass :: forall props. ReactClass props
--- SFC
--- foreign import breadcrumbClass :: forall props. ReactClass props
+
+-- DISCUSS: Please describe what would you like to discuss? so that its easy for me to answer!
+-- SFC need to discuss
+foreign import breadcrumbClass :: forall props. ReactClass props
+
 foreign import buttonClass :: forall props. ReactClass props
 foreign import anchorButtonClass :: forall props. ReactClass props
+
 foreign import collapseClass :: forall props. ReactClass props
 foreign import collapsibleListClass :: forall props. ReactClass props
+
+-- need to discuss
 foreign import contextMenuTargetClass :: forall props. ReactClass props
+
 foreign import datePickerClass :: forall props. ReactClass props
 foreign import dateRangePickerClass :: forall props. ReactClass props
 foreign import timePickerClass :: forall props. ReactClass props
 foreign import dateTimePickerClass :: forall props. ReactClass props
 foreign import dateInputClass :: forall props. ReactClass props
+
 foreign import dialogClass :: forall props. ReactClass props
+
 foreign import editableTextClass :: forall props. ReactClass props
+
 foreign import checkboxClass :: forall props. ReactClass props
 foreign import radioClass :: forall props. ReactClass props
 foreign import radioGroupClass :: forall props. ReactClass props
 foreign import switchClass :: forall props. ReactClass props
 foreign import inputGroupClass :: forall props. ReactClass props
+
 foreign import hotkeyClass :: forall props. ReactClass props
 foreign import hotkeysClass :: forall props. ReactClass props
+
+-- need to discuss
 foreign import hotkeysTargetClass :: forall props. ReactClass props
+
 foreign import menuClass :: forall props. ReactClass props
 foreign import menuItemClass :: forall props. ReactClass props
 foreign import menuDividerClass :: forall props. ReactClass props
+
 foreign import navbarClass :: forall props. ReactClass props
+
 foreign import nonIdealStateClass :: forall props. ReactClass props
+
 foreign import overlayClass :: forall props. ReactClass props
+
 foreign import popoverClass :: forall props. ReactClass props
-foreign import popoverInteractionKindClass :: forall props. ReactClass props
+
 foreign import positionClass :: forall props. ReactClass props
 foreign import portalClass :: forall props. ReactClass props
 foreign import progressBarClass :: forall props. ReactClass props

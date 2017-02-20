@@ -31,7 +31,6 @@ exports.navbarClass = BP.Navbar;
 exports.nonIdealStateClass = BP.NonIdealState;
 exports.overlayClass = BP.Overlay;
 exports.popoverClass = BP.Popover;
-exports.popoverInteractionKindClass = BP.PopoverInteractionKind;
 exports.positionClass = BP.Position;
 exports.portalClass = BP.Portal;
 exports.progressBarClass = BP.ProgressBar;
@@ -54,42 +53,3 @@ exports.toastClass = BP.Toast;
 exports.toasterClass = BP.Toaster;
 exports.tooltipClass = BP.Tooltip;
 exports.treeClass = BP.Tree;
-
-// Breadcrumb
-// Button
-// AnchorButton
-// //Buttonm Groups doesn't have JavaScript API
-// Collapse
-// CollapsibleList
-// ContextMenuTarget
-// DatePicker
-// DateRangePicker
-// TimePicker
-// DateTimePicker
-// DateInput
-// Dialog
-// EditableText
-// Checkbox
-// Radio
-// RadioGroup
-// Switch
-// InputGroup
-// Hotkey, Hotkeys, HotkeysTarget
-// Menu, MenuItem, MenuDivider
-// Navbar
-// NonIdealState
-// Overlay
-// Popover
-// Popover, PopoverInteractionKind, Position
-// Portal
-// ProgressBar
-// Spinner
-// SVGSpinner
-// Slider
-// RangeSlider
-// Table, Column, Cell, ColumnHeaderCell, EditableName, EditableCell
-// Tabs, TabList, Tab, TabPanel
-// Tag
-// Toast, Toaster
-// Tooltip
-// Tree
