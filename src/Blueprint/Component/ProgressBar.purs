@@ -6,8 +6,7 @@ import Blueprint.ComponentClass (progressBarClass)
 import Blueprint.Type (Prop, PropsEx)
 
 type ProgressBarProps = PropsEx
-  ( value :: Number
-  )
+  (value :: Number)
 
 progressBar :: Prop ProgressBarProps -> Array ReactElement -> ReactElement
 progressBar = createElement progressBarClass
