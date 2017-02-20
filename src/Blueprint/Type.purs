@@ -67,7 +67,7 @@ intent =
 
 -- TODO: Lets discard using prefix of I. I was used in TypeScript as a way to specify Interface!
 -- DISCUSS: I think r here is not necessary?
-type Prpos r = PropsEx ()
+type Prpos = PropsEx ()
 
 -- DISCUSS: Do we need this to be extensible?
 type PropsEx r = { className :: String | r }
