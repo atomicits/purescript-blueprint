@@ -1,33 +1,36 @@
-module Blueprint.Component.CollapsibleList where
+module Blueprint.Component.CollapsibleList
+  ( CollapseForm
+  , CollapsibleListProps
+  , start
+  , end
+  , collapsibleList
+  ) where
+
+import React
+import Control.Monad.Eff (Eff)
+
 
 import Blueprint.Component.Menu (MenuItemProps)
 import Blueprint.Component.Popover (PopoverProps)
 import Blueprint.ComponentClass (collapsibleListClass)
-import Blueprint.Type (PropsEx, Prop, UnknownJSXElementType)
-import React
+import Blueprint.Type (Prop, UnknownJSXElementType)
 
 newtype CollapseForm = CollapseForm Int
 
-collapseForm ::
-  { start :: CollapseForm
-  , end :: CollapseForm
-  }
-collapseForm =
-  { start : CollapseForm 0
-  , end : CollapseForm 1
-  }
+start :: CollapseForm
+start = CollapseForm 0
 
-type CollapsibleListProps = CollapsibleListPropsEx ()
+end :: CollapseForm
+end = CollapseForm 1
 
-type CollapsibleListPropsEx r = PropsEx
-  ( dropdownTarget :: UnknownJSXElementType
-  , dropdownProps :: PopoverProps
-  , renderVisibleItem :: MenuItemProps -> Int -> UnknownJSXElementType
-  , collapseFrom :: CollapseForm
-  , visibleItemClassName :: String
-  , visibleItemCount :: Int
-  | r
-  )
+type CollapsibleListProps eff = { className :: String
+                                , dropdownTarget :: UnknownJSXElementType
+                                , dropdownProps :: Prop (PopoverProps eff)
+                                , renderVisibleItem :: Prop (MenuItemProps eff) -> Int -> Eff eff UnknownJSXElementType
+                                , collapseFrom :: CollapseForm
+                                , visibleItemClassName :: String
+                                , visibleItemCount :: Int
+                                }
 
-collapsibleList :: Prop CollapsibleListProps -> Array ReactElement -> ReactElement
+collapsibleList :: forall eff. Prop (CollapsibleListProps eff) -> Array ReactElement -> ReactElement
 collapsibleList = createElement collapsibleListClass

@@ -1,13 +1,13 @@
-module Blueprint.Component.Alert where
+module Blueprint.Component.Alert
+  ( AlertProps
+  , alert
+  ) where
 
+import React
 import Blueprint.ComponentClass (alertClass)
 import Blueprint.Type (Intent, Prop, PropsEx, UnknownEventType, UnknownStyleType)
-import React
 
-type AlertProps = AlertPropsEx ()
-
--- DISCUSS: Do we need this to be extensible?
-type AlertPropsEx r  = PropsEx
+type AlertProps = PropsEx
   ( cancelButtonText :: String
   , confirmButtonText :: String
   , iconName :: String
@@ -16,7 +16,6 @@ type AlertPropsEx r  = PropsEx
   , style :: UnknownStyleType
   , onCancel ::  UnknownEventType
   , onConfirm :: UnknownEventType
-  | r
   )
 
 alert :: Prop AlertProps -> Array ReactElement -> ReactElement

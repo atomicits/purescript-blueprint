@@ -1,8 +1,11 @@
 module Blueprint.Component.Overlay where
 
-import Blueprint.ComponentClass (overlayClass)
-import Blueprint.Type (Prop, UnknownEventType, UnknownFunctionType, UnknownJSXElementType)
 import React
+
+import Blueprint.Event (UnitEventHandler)
+import Blueprint.ComponentClass (overlayClass)
+import Blueprint.Type (Prop, UnknownEventType, UnknownJSXElementType)
+
 
 type OverLayableProps = OverLayablePropsEx ()
 
@@ -17,19 +20,19 @@ type OverLayablePropsEx r =
   | r
   }
 
-type OverlayProps = OverlayPropsEx ()
+type OverlayProps eff = OverlayPropsEx eff ()
 
-type OverlayPropsEx r = OverLayablePropsEx
+type OverlayPropsEx eff r = OverLayablePropsEx
   ( className :: String
   , backdropClassName :: String
   , backdropProps :: UnknownJSXElementType
   , canOutsideClickClose :: Boolean
   , hasBackdrop :: Boolean
-  , didOpen :: UnknownFunctionType -- () => any;
+  , didOpen :: UnitEventHandler eff
   , isOpen :: Boolean
   , transitionName :: String
   | r
   )
 
-overlay :: Prop OverlayProps -> Array ReactElement -> ReactElement
+overlay :: forall eff . Prop (OverlayProps eff) -> Array ReactElement -> ReactElement
 overlay = createElement overlayClass
