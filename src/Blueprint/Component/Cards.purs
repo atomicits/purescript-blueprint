@@ -1,6 +1,5 @@
 module Blueprint.Component.Cards where
 
-
 import Prelude (($), (<>))
 
 import React

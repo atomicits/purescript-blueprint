@@ -5,7 +5,6 @@ import React (ReactElement, createElement)
 import Blueprint.ComponentClass (progressBarClass)
 import Blueprint.Type (Prop, PropsEx)
 
-
 type ProgressBarProps = ProgressBarPropsEx ()
 
 type ProgressBarPropsEx r = PropsEx
