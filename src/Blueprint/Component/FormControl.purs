@@ -1,14 +1,14 @@
-module FormControls where
+module Blueprint.Component.FormControl where
 
 import Prelude
 
 import React
 
-import BluePrint.Type
+import Blueprint.Type
 
 type FormControlsProps = FormControlsPropsEx ()
 
-type FormControlsPropsEx r = PropsEX
+type FormControlsPropsEx r = PropsEx
   ( checked :: Boolean
   , defaultChecked :: Boolean
   , disabled :: Boolean
