@@ -19,12 +19,12 @@ type SliderPropsEx r = PropsEx
   , isMoving :: Boolean
   , initialValue :: Number
   , value :: NumberRange
-  , onChange ::  NumberRange -> Unit
+  , onChange :: NumberRange -> Unit
   , onRelease :: NumberRange -> Unit
   | r
   )
 
-type NumberRange  = Array Int -- DISCUSS: will it have a start and end? or an array of int?
+type NumberRange = Array Int -- DISCUSS: will it have a start and end? or an array of int?
 
 slider :: Prop SliderProps -> Array ReactElement -> ReactElement
 slider = createElement sliderClass

@@ -1,4 +1,4 @@
-module Blueprint.Component.Cards where
+module Blueprint.Component.Card where
 
 import Prelude (($), (<>))
 
@@ -27,6 +27,6 @@ card :: CardModifier -> Array ReactElement -> ReactElement
 card (CardModifier m) c =
   RD.div [ RP.className $ "pt-card " <> m ] c
 
-interactiveCards :: CardModifier -> Array ReactElement -> ReactElement
-interactiveCards (CardModifier m) c =
+interactiveCard :: CardModifier -> Array ReactElement -> ReactElement
+interactiveCard (CardModifier m) c =
   RD.div [ RP.className $ "pt-card pt-interactive " <> m ] c

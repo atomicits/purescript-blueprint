@@ -7,11 +7,8 @@ import Blueprint.Type (Prop, PropsEx, UnknownEventType)
 
 -- export interface ITagProps extends IProps, IIntentProps, React.HTMLProps<HTMLSpanElement> {
 
-type TagProps = TagPropsEx ()
-
-type TagPropsEx r = PropsEx
+type TagProps  =  PropsEx
   ( onRemove :: UnknownEventType
-  | r
   )
 
 tag :: Prop TagProps -> Array ReactElement -> ReactElement
