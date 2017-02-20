@@ -1,15 +1,16 @@
-module Blueprint.Component.Spinner where
+module Blueprint.Component.Spinner
+  ( SpinnerProps
+  , spinner
+  ) where
 
-import Blueprint.ComponentClass (spinnerClass)
-import Blueprint.Type (PropsEx, Prop)
 import React (ReactElement, createElement)
 
---- export interface ISpinnerProps extends IProps, IIntentProps {
-type SpinnerProps  = SpinnerPropsEx ()
+import Blueprint.ComponentClass (spinnerClass)
+import Blueprint.Type (Intent, Prop, PropsEx)
 
-type SpinnerPropsEx r = PropsEx
+type SpinnerProps = PropsEx
   ( value :: Number
-  | r
+  , intent :: Intent
   )
 
 spinner :: Prop SpinnerProps -> Array ReactElement -> ReactElement

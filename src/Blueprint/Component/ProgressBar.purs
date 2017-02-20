@@ -1,12 +1,17 @@
-module Blueprint.Component.ProgressBar where
+module Blueprint.Component.ProgressBar
+ ( ProgressBarProps
+ , progressBar
+ ) where
 
 import React (ReactElement, createElement)
 
 import Blueprint.ComponentClass (progressBarClass)
-import Blueprint.Type (Prop, PropsEx)
+import Blueprint.Type (Prop, PropsEx, Intent)
 
 type ProgressBarProps = PropsEx
-  (value :: Number)
+  ( value :: Number
+  , intent :: Intent
+  )
 
 progressBar :: Prop ProgressBarProps -> Array ReactElement -> ReactElement
 progressBar = createElement progressBarClass

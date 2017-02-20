@@ -1,10 +1,21 @@
-module Blueprint.Component.Slider where
+module Blueprint.Component.Slider
+  ( SliderProps
+  , SliderPropsEx
+  , NumberRange
+  , slider
+  , RenderLabel
+  ) where
 
 import Data.Unit (Unit)
 import React (ReactElement, createElement)
 
 import Blueprint.ComponentClass (sliderClass)
-import Blueprint.Type (Prop, PropsEx)
+import Blueprint.Type
+
+
+type NumberToComponentORString = (Number -> ComponentORString)
+
+data RenderLabel = NumberToComponentORString | Boolean
 
 type SliderProps = SliderPropsEx ()
 
@@ -15,7 +26,7 @@ type SliderPropsEx r = PropsEx
   , min :: Number
   , showTrackFill :: Boolean
   , stepSize :: Number
-  , renderLabel :: String       --- TODO -- ((value: number) => string | JSX.Element) | boolean
+  , renderLabel :: RenderLabel
   , isMoving :: Boolean
   , initialValue :: Number
   , value :: NumberRange
