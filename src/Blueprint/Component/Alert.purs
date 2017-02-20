@@ -1,8 +1,11 @@
-module Blueprint.Component.Alert where
+module Blueprint.Component.Alert
+  ( AlertProps
+  , alert
+  ) where
 
+import React
 import Blueprint.ComponentClass (alertClass)
 import Blueprint.Type (Intent, Prop, PropsEx, UnknownEventType, UnknownStyleType)
-import React
 
 type AlertProps = PropsEx
   ( cancelButtonText :: String

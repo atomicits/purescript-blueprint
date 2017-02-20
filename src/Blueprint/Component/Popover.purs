@@ -1,37 +1,40 @@
-module Blueprint.Component.Popover where
-
-import Prelude
+module Blueprint.Component.Popover
+  ( PopoverInteractionKind
+  , click
+  , clickTargetOnly
+  , hover
+  , hoverTargetOnly
+  , PopoverProps
+  , popover
+  ) where
 
 import Blueprint.Component.Overlay (OverLayablePropsEx)
 import Blueprint.ComponentClass (popoverClass)
-import Blueprint.Type (ComponentORString, Position, Prop, TetherConstraint, UnknownFunctionType, UnknownReactType)
+import Blueprint.Event (EventHandler, UnitEventHandler)
+import Blueprint.Type
 import React (ReactElement, createElement)
 
-type PopoverProps = PopoverPropsEx ()
 
 newtype PopoverInteractionKind = PopoverInteractionKind Int
 
+click :: PopoverInteractionKind
+click = PopoverInteractionKind 0
 
--- TODO: Lets use camelCase for field names no _ in field names
-popoverInteractionKind ::
-  { click :: PopoverInteractionKind
-  , clickTargetOnly :: PopoverInteractionKind
-  , hover :: PopoverInteractionKind
-  , hoverTargetOnly :: PopoverInteractionKind
-  }
-popoverInteractionKind =
-  { click : PopoverInteractionKind 0
-  , clickTargetOnly : PopoverInteractionKind 1
-  , hover : PopoverInteractionKind 2
-  , hoverTargetOnly : PopoverInteractionKind 3
-  }
+clickTargetOnly :: PopoverInteractionKind
+clickTargetOnly = PopoverInteractionKind 1
 
-type PopoverPropsEx r = OverLayablePropsEx
+hover :: PopoverInteractionKind
+hover = PopoverInteractionKind 2
+
+hoverTargetOnly :: PopoverInteractionKind
+hoverTargetOnly = PopoverInteractionKind 3
+
+type PopoverProps eff = OverLayablePropsEx
   ( className :: String
   , backdropProps :: UnknownReactType
   , content :: ComponentORString
   , arrowSize :: Int
-  , constrains :: TetherConstraint
+  , constrains :: Array TetherConstraint
   , defaultIsOpen :: Boolean
   , hoverCloseDelay :: Int
   , hoverOpenDelay :: Int
@@ -40,18 +43,17 @@ type PopoverPropsEx r = OverLayablePropsEx
   , isDisabled :: Boolean
   , isModal :: Boolean
   , isOpen :: Boolean
-  , onInteraction :: Boolean -> Unit
+  , onInteraction :: EventHandler eff Boolean
   , popoverClassName :: String
-  , popoverDidOpen :: UnknownFunctionType
-  , popoverWillClose :: UnknownFunctionType
-  , popoverWillOpen :: UnknownFunctionType
+  , popoverDidOpen :: UnitEventHandler eff
+  , popoverWillClose :: UnitEventHandler eff
+  , popoverWillOpen :: UnitEventHandler eff
   , portalClassName :: String
   , position :: Position
   , rootElementTag :: String
   , useSmartArrowPositioning :: Boolean
   , useSmartPositioning :: Boolean
-  | r
   )
 
-popover :: Prop PopoverProps -> Array ReactElement -> ReactElement
+popover :: forall eff. Prop (PopoverProps eff) -> Array ReactElement -> ReactElement
 popover = createElement popoverClass
