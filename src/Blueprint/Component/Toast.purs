@@ -1,50 +1,39 @@
-module Blueprint.Component.Toast
-  ( ToastProps
-  , ToastPropsEx
-  , ActionOpt
-  , toast
-  ) where
+module Blueprint.Component.Toast  where
 
-import Data.Unit (Unit)
 import React (ReactElement, createElement)
 
-import Blueprint.ComponentClass (toastClass)
-import Blueprint.Type (ActionProps, ComponentORString, Intent,
-LinkProps, Position, Prop, PropsEx )
+import Blueprint.Type (ActionPropsEx, ComponentORString, Intent, Prop)
+import Blueprint.ComponentClass (toastClass, toasterClass)
+import Blueprint.Event (EventHandler)
 
-type ToastProps = ToastPropsEx ()
 
-type ActionOpt =
-  { actionProp :: ActionProps
-  , linkProp :: LinkProps
-  }
+type ToastProps eff = ToastPropsEx eff ()
 
-type ToastPropsEx r = PropsEx
-  ( action ::  ActionOpt
+type ToastPropsEx eff f =
+  { className :: String
+  , intent :: Intent
+  , action :: ActionOpt eff
   , iconName :: String
   , message :: ComponentORString
-  , onDismiss :: Boolean -> Unit   --- (didTimeoutExpire: boolean) => void;
-  , timeout :: Number
-  , autoFocus :: Boolean
-  , canEscapeKeyClear :: Boolean
-  , inline :: Boolean
-  , position :: Position
-  , toasts :: String     --  IToastOptions[];
-  , show :: String
-  , update :: Unit
-  , dismiss :: Unit
-  , clear :: Unit
-  , getToasts :: String    --IToastOptions[];
-  , intent :: Intent
-  |r
+  , onDismiss :: EventHandler eff Boolean
+  , timeout :: Int
+  | f
+  }
+
+type ActionOpt eff = ActionPropsEx eff
+  ( href :: String
+  , target :: String
   )
 
-toast :: Prop ToastProps -> Array ReactElement -> ReactElement
+
+type ToastOptions eff = ToastPropsEx eff
+  ( key :: String
+  )
+
+
+toast :: forall eff. Prop (ToastProps eff) -> Array ReactElement -> ReactElement
 toast = createElement toastClass
 
 
-
---- need to discuss
--- export interface IToasterState {
---     toasts: IToastOptions[];
--- }
+toaster :: forall eff. Prop (ToastProps eff) -> Array ReactElement -> ReactElement
+toaster = createElement toasterClass
