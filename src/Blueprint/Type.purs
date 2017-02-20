@@ -122,3 +122,9 @@ type TetherConstraint =
   , pinnedClass :: String
   , to :: ComponentORString --- String | UnknownReactType | Array Int
   }
+
+
+type Offset =
+  { top :: Int
+  , left :: Int
+  }
