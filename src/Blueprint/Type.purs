@@ -1,8 +1,7 @@
 module Blueprint.Type where
 
 import Prelude
-
-import Blueprint.Event (EventHandler, MouseEvent)
+import Blueprint.Event (EventHandler, MouseEvent, SyntheticEvent)
 
 newtype Position = Position Int
 
@@ -109,10 +108,19 @@ type OptionPropsEx r = PropsEx
   |r
   )
 
+type ControlledProps eff = ControlledPropsEx eff ()
+type ControlledPropsEx eff r =
+  { defaultValue :: String
+  , onChange :: EventHandler eff (SyntheticEvent eff)
+  , value :: String
+  | r
+  }
+
 
 data ComponentORString
   = String
   | UnknownJSXElementType
+
 
 class AlignEnum a where
   alignRight :: a

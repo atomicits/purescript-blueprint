@@ -21,6 +21,7 @@ exports.radioClass = BP.Radio;
 exports.radioGroupClass = BP.RadioGroup;
 exports.switchClass = BP.Switch;
 exports.inputGroupClass = BP.InputGroup;
+exports.numericInputClass = BP.NumericInput;
 exports.hotkeyClass = BP.Hotkey;
 exports.hotkeysClass = BP.Hotkeys;
 exports.hotkeysTargetClass = BP.HotkeysTarget;

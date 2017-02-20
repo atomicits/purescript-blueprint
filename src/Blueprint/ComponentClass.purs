@@ -42,7 +42,7 @@ foreign import radioClass :: forall props. ReactClass props
 foreign import radioGroupClass :: forall props. ReactClass props
 foreign import switchClass :: forall props. ReactClass props
 foreign import inputGroupClass :: forall props. ReactClass props
-
+foreign import numericInputClass :: forall props. ReactClass props
 foreign import hotkeyClass :: forall props. ReactClass props
 foreign import hotkeysClass :: forall props. ReactClass props
 
