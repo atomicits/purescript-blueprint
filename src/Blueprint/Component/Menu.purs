@@ -1,12 +1,20 @@
-module Blueprint.Component.Menu where
+module Blueprint.Component.Menu
+  ( MenuItemProps
+  , MenuItemPropsEx
+  , MenuProps
+  , MenuDividerProps
+  , menu
+  , menuItem
+  , menuDevider
+  ) where
 
+import React
 import Blueprint.ComponentClass (menuClass, menuDividerClass, menuItemClass)
 import Blueprint.Type (ActionPropsEx, ComponentORString, Prop, PropsEx)
-import React
 
-type MenuItemProps = MenuItemPropsEx ()
+type MenuItemProps eff = MenuItemPropsEx eff ()
 
-type MenuItemPropsEx r = ActionPropsEx
+type MenuItemPropsEx eff r = ActionPropsEx eff
   ( href :: String
   , target :: String
   , text ::  String
@@ -19,13 +27,9 @@ type MenuItemPropsEx r = ActionPropsEx
   | r
   )
 
-type MenuProps = MenuPropsEx ()
+type MenuProps =  PropsEx ()
 
-type MenuPropsEx r = PropsEx r
-
-type MenuDividerProps = MenuDividerPropsEx ()
-
-type MenuDividerPropsEx r = PropsEx (title :: String | r)
+type MenuDividerProps =  PropsEx (title :: String)
 
 menu :: Prop MenuProps -> Array ReactElement -> ReactElement
 menu = createElement menuClass

@@ -1,48 +1,56 @@
-module Blueprint.Component.ButtonGroup where
+module Blueprint.Component.ButtonGroup
+ ( ButtonGroupModifier
+ , large
+ , minimal
+ , fill
+ , vertical
+ , buttonGroup
+ , buttonGroupVertical
+ , buttonGroupResponsive
+ , buttonGroupCustom
+ ) where
 
 import Prelude
-
-import Data.Array (foldl)
-import React (ReactElement)
 import React.DOM as RD
 import React.DOM.Props as RP
+import Blueprint.Type (class AlignEnum)
+import Data.Array (foldl)
+import React (ReactElement)
+
 
 newtype ButtonGroupModifier = ButtonGroupModifier String
 
--- DISCUSS: should we use large, minimal,... directly? instead of record access?
-buttonGroupModifier ::
-  { large :: ButtonGroupModifier
-  , minimal :: ButtonGroupModifier
-  , fill :: ButtonGroupModifier
-  , vertical :: ButtonGroupModifier
-  , alignLeft :: ButtonGroupModifier
-  , alignRight :: ButtonGroupModifier
-  }
-buttonGroupModifier =
-  { large : ButtonGroupModifier "pt-large"
-  , minimal : ButtonGroupModifier "pt-minimal"
-  , fill : ButtonGroupModifier "pt-fill"
-  , vertical : ButtonGroupModifier "pt-vertical"
-  , alignLeft : ButtonGroupModifier "pt-align-left"
-  , alignRight : ButtonGroupModifier "pt-align-left"
-  }
+instance buttonGroupAlign :: AlignEnum ButtonGroupModifier where
+  alignLeft = ButtonGroupModifier "pt-align-left"
+  alignRight = ButtonGroupModifier "pt-align-left"
 
--- DISCUSS: why don't we have a single button group function and enable us to use multiple modifiers?
+large :: ButtonGroupModifier
+large = ButtonGroupModifier "pt-large"
+
+minimal :: ButtonGroupModifier
+minimal = ButtonGroupModifier "pt-minimal"
+
+fill :: ButtonGroupModifier
+fill = ButtonGroupModifier "pt-fill"
+
+vertical :: ButtonGroupModifier
+vertical = ButtonGroupModifier "pt-vertical"
+
+
 buttonGroup :: ButtonGroupModifier -> Array ReactElement -> ReactElement
 buttonGroup (ButtonGroupModifier m) c =
   RD.div [ RP.className $ "pt-button-group " <> m ] c
 
-responsiveButtonGroup :: ButtonGroupModifier -> Array ReactElement -> ReactElement
-responsiveButtonGroup (ButtonGroupModifier m) c =
+buttonGroupResponsive :: ButtonGroupModifier -> Array ReactElement -> ReactElement
+buttonGroupResponsive (ButtonGroupModifier m) c =
   RD.div [ RP.className $ "pt-button-group pt-fill" <> m ] c
 
-verticalButtonGroup :: ButtonGroupModifier -> Array ReactElement -> ReactElement
-verticalButtonGroup (ButtonGroupModifier m) c =
+buttonGroupVertical :: ButtonGroupModifier -> Array ReactElement -> ReactElement
+buttonGroupVertical (ButtonGroupModifier m) c =
   RD.div [ RP.className $ "pt-button-group pt-vertical" <> m ] c
 
-
-customButtonGroup :: Array ButtonGroupModifier -> Array ReactElement -> ReactElement
-customButtonGroup ms c =
+buttonGroupCustom :: Array ButtonGroupModifier -> Array ReactElement -> ReactElement
+buttonGroupCustom ms c =
    RD.div [ RP.className klassNames ] c
    where
      klassNames = foldl strconcat "" ms

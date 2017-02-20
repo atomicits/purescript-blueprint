@@ -1,22 +1,22 @@
-module Blueprint.Component.Button where
+module Blueprint.Component.Button
+  ( ButtonProps
+  , anchorButton
+  , button
+  ) where
 
+import React
 import Blueprint.ComponentClass (anchorButtonClass, buttonClass)
 import Blueprint.Type (ActionPropsEx, Prop, UnknownRefType)
-import React
 
-type ButtonProps =  ButtonPropsEx ()
-
--- DISCUSS: Do we need this to be extensible?
-type ButtonPropsEx r = ActionPropsEx
+type ButtonProps eff = ActionPropsEx eff
   ( elementRef :: UnknownRefType
   , rightIconName :: String
   , loading :: Boolean
-  , type :: String -- TODO: lets avoid using keywords in field names.
-  | r
+  , type :: String
   )
 
-anchorButton :: Prop ButtonProps -> Array ReactElement -> ReactElement
+anchorButton :: forall eff. Prop (ButtonProps eff) -> Array ReactElement -> ReactElement
 anchorButton = createElement anchorButtonClass
 
-button :: Prop ButtonProps -> Array ReactElement -> ReactElement
+button :: forall eff. Prop (ButtonProps eff) -> Array ReactElement -> ReactElement
 button = createElement buttonClass

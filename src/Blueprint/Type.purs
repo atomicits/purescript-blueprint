@@ -2,36 +2,46 @@ module Blueprint.Type where
 
 import Prelude
 
+import Blueprint.Event (EventHandler, MouseEvent)
+
 newtype Position = Position Int
 
-position ::
-  { topLeft :: Position
-  , top :: Position
-  , topRight :: Position
-  , rightTop :: Position
-  , right :: Position
-  , rightBottom :: Position
-  , bottomRight :: Position
-  , bottom :: Position
-  , bottomLeft :: Position
-  , leftBottom :: Position
-  , left :: Position
-  , leftTop :: Position
-  }
-position =
-  { topLeft :  Position 0
-  , top :  Position 1
-  , topRight :  Position 2
-  , rightTop :  Position 3
-  , right :  Position 4
-  , rightBottom :  Position 5
-  , bottomRight :  Position 6
-  , bottom :  Position 7
-  , bottomLeft :  Position 8
-  , leftBottom :  Position 9
-  , left :  Position 10
-  , leftTop :  Position 11
-  }
+topLeft :: Position
+topLeft =  Position 0
+
+top :: Position
+top =  Position 1
+
+topRight :: Position
+topRight =  Position 2
+
+rightTop :: Position
+rightTop =  Position 3
+
+right :: Position
+right =  Position 4
+
+rightBottom :: Position
+rightBottom =  Position 5
+
+bottomRight :: Position
+bottomRight =  Position 6
+
+bottom :: Position
+bottom =  Position 7
+
+bottomLeft :: Position
+bottomLeft =  Position 8
+
+leftBottom :: Position
+leftBottom =  Position 9
+
+left :: Position
+left =  Position 10
+
+leftTop :: Position
+leftTop =  Position 11
+
 
 type UnknownStyleType = {}
 
@@ -47,41 +57,36 @@ type UnknownFunctionType = {} -- () => void;
 
 type Prop a = a -> a
 
+class IntentEnum a where
+  none :: a
+  primary :: a
+  success :: a
+  warning :: a
+  danger :: a
+
+
 newtype Intent = Intent Int
 
--- DISCUSS: do we want to use / access these values as intent.none, intent.primary or just none, primary?
-intent ::
-  { none :: Intent
-  , primary :: Intent
-  , success :: Intent
-  , warning :: Intent
-  , danger :: Intent
-  }
-intent =
-  { none : Intent (-1)
-  , primary : Intent 0
-  , success : Intent 1
-  , warning : Intent 2
-  , danger : Intent 3
-  }
+instance intentInt :: IntentEnum Intent where
+  none = Intent (-1)
+  primary = Intent 0
+  success = Intent 1
+  warning = Intent 2
+  danger = Intent 3
 
--- TODO: Lets discard using prefix of I. I was used in TypeScript as a way to specify Interface!
--- DISCUSS: I think r here is not necessary?
+
 type Prpos = PropsEx ()
-
--- DISCUSS: Do we need this to be extensible?
 type PropsEx r = { className :: String | r }
 
 type IntentProps = IntentPropsEx ()
-
 type IntentPropsEx r = { intent :: Intent | r }
 
-type ActionProps = ActionPropsEx ()
+type ActionProps eff = ActionPropsEx eff ()
 
-type ActionPropsEx r =
+type ActionPropsEx eff r =
   { disabled :: Boolean
   , iconName :: String
-  , onClick :: UnknownEventType
+  , onClick :: EventHandler eff (MouseEvent eff)
   , text :: String
   , intent :: Intent
   , className :: String
@@ -89,7 +94,6 @@ type ActionPropsEx r =
   }
 
 type LinkProps = LinkPropsEx ()
-
 type LinkPropsEx r =
   { href :: String
   , target :: String
@@ -100,10 +104,21 @@ data ComponentORString
   = String
   | UnknownJSXElementType
 
+class AlignEnum a where
+  alignRight :: a
+  alignLeft  :: a
+
+
+class DarkEnum a where
+  dark :: a
+
+
+data BooleanORArrayString = Boolean | Array String
+
 type TetherConstraint =
   { attachment :: String
   , outOfBoundsClass :: String
-  , pin :: ComponentORString -- Boolean | Array String
+  , pin :: BooleanORArrayString
   , pinnedClass :: String
   , to :: ComponentORString --- String | UnknownReactType | Array Int
   }

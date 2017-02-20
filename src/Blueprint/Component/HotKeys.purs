@@ -1,27 +1,30 @@
-module Blueprint.Component.Hotkeys where
+module Blueprint.Component.Hotkeys
+  ( HotkeysProps
+  , HotkeyProps
+  , hotkey
+  , hotkeys
+  ) where
 
-import Blueprint.ComponentClass (hotkeyClass, hotkeysClass)
-import Blueprint.Type (Prop, PropsEx, UnknownEventType)
 import React
 
--- DISCUSS: Do we need this to be extensible?
-type HotkeysProps = HotkeysPropsEx ()
+import Control.Monad.Eff (Eff)
 
-type HotkeysPropsEx r = PropsEx
-  ( tabIndex :: Int
-  | r
-  )
+import Blueprint.ComponentClass (hotkeyClass, hotkeysClass)
+import Blueprint.Type (Prop, PropsEx)
 
-type HotkeyProps =
+
+type HotkeysProps =  PropsEx (tabIndex :: Int)
+
+type HotkeyProps eff a =
   { combo :: String
   , label :: String
   , global :: Boolean
   , group :: String
-  , onKeyDown :: UnknownEventType
-  , onKeyUp :: UnknownEventType
+  , onKeyDown :: KeyboardEvent -> Eff eff a
+  , onKeyUp :: KeyboardEvent -> Eff eff a
   }
 
-hotkey :: Prop HotkeyProps -> Array ReactElement -> ReactElement
+hotkey :: forall eff a. Prop (HotkeyProps eff a) -> Array ReactElement -> ReactElement
 hotkey = createElement hotkeyClass
 
 hotkeys :: Prop HotkeysProps -> Array ReactElement -> ReactElement

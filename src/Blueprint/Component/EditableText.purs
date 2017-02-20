@@ -1,12 +1,17 @@
-module Blueprint.Component.EditableText where
+module Blueprint.Component.EditableText
+  ( EditableTextProps
+  , editableText
+  ) where
 
 import Prelude
-
 import Blueprint.ComponentClass (editableTextClass)
-import Blueprint.Type (Intent, Prop, UnknownEventType)
+import Blueprint.Event (UnitEventHandler, EventHandler)
+import Blueprint.Type (Intent, Prop)
 import React (ReactElement, createElement)
 
-type EditableTextProps =
+
+
+type EditableTextProps eff =
   { className :: String
   , intent :: Intent
   , confirmOnEnterKey :: Boolean
@@ -21,11 +26,11 @@ type EditableTextProps =
   , placeholder :: String
   , selectAllOnFocus :: Boolean
   , value :: String
-  , onCancel :: String -> Unit
-  , onChange :: String -> Unit
+  , onCancel :: EventHandler eff String
+  , onChange :: EventHandler eff String
   , onConfirm :: String -> Unit
-  , onEdit :: UnknownEventType
+  , onEdit :: UnitEventHandler eff
   }
 
-editableText :: Prop EditableTextProps -> ReactElement
+editableText :: forall eff. Prop (EditableTextProps eff) -> ReactElement
 editableText p = createElement editableTextClass p []
