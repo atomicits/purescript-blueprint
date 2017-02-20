@@ -100,6 +100,16 @@ type LinkPropsEx r =
   | r
   }
 
+type OptionProps = OptionPropsEx ()
+
+type OptionPropsEx r = PropsEx
+  ( disabled :: Boolean
+  , label :: String
+  , value :: String
+  |r
+  )
+
+
 data ComponentORString
   = String
   | UnknownJSXElementType
