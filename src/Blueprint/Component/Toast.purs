@@ -1,15 +1,26 @@
-module Blueprint.Component.Toast where
+module Blueprint.Component.Toast
+  ( ToastProps
+  , ToastPropsEx
+  , ActionOpt
+  , toast
+  ) where
 
-import Data.Unit(Unit)
+import Data.Unit (Unit)
 import React (ReactElement, createElement)
 
 import Blueprint.ComponentClass (toastClass)
-import Blueprint.Type (ComponentORString, Position, Prop, PropsEx)
+import Blueprint.Type (ActionProps, ComponentORString, Intent,
+LinkProps, Position, Prop, PropsEx )
 
 type ToastProps = ToastPropsEx ()
 
+type ActionOpt =
+  { actionProp :: ActionProps
+  , linkProp :: LinkProps
+  }
+
 type ToastPropsEx r = PropsEx
-  ( action :: String  --IActionProps & ILinkProps;
+  ( action ::  ActionOpt
   , iconName :: String
   , message :: ComponentORString
   , onDismiss :: Boolean -> Unit   --- (didTimeoutExpire: boolean) => void;
@@ -24,8 +35,16 @@ type ToastPropsEx r = PropsEx
   , dismiss :: Unit
   , clear :: Unit
   , getToasts :: String    --IToastOptions[];
+  , intent :: Intent
   |r
   )
 
 toast :: Prop ToastProps -> Array ReactElement -> ReactElement
 toast = createElement toastClass
+
+
+
+--- need to discuss
+-- export interface IToasterState {
+--     toasts: IToastOptions[];
+-- }

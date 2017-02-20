@@ -1,11 +1,14 @@
-module Blueprint.Component.Tooltip where
+module Blueprint.Component.Tooltip
+  ( TooltipProps
+  , TooltipPropsEx
+  , tooltip
+  ) where
 
+import Data.Unit (Unit)
 import React (ReactElement, createElement)
 
 import Blueprint.ComponentClass (tooltipClass)
-import Blueprint.Type (ComponentORString, Position, Prop, PropsEx, TetherConstraint)
-
---- export interface ITooltipProps extends IProps, IIntentProps
+import Blueprint.Type (ComponentORString, Position, Prop, PropsEx, TetherConstraint, Intent)
 
 type TooltipProps = TooltipPropsEx ()
 
@@ -25,7 +28,8 @@ type TooltipPropsEx r = PropsEx
   , transitionDuration :: Number
   , useSmartArrowPositioning :: Boolean
   , useSmartPositioningb :: Boolean
-  , onInteraction :: String                   --- TODO --nextOpenState: boolean => void
+  , onInteraction :: Boolean -> Unit  --- TODO --nextOpenState: boolean => void
+  , intent :: Intent
   |r
   )
 

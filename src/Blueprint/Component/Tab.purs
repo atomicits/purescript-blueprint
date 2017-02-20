@@ -1,4 +1,8 @@
-module Blueprint.Component.Tab where
+module Blueprint.Component.Tab
+  ( TabProps
+  , TabPropsEx
+  , tab
+  ) where
 
 import React (ReactElement, createElement)
 
@@ -7,7 +11,7 @@ import Blueprint.Type (Prop, PropsEx)
 
 type TabProps = TabPropsEx ()
 
-type TabPropsEx  r = PropsEx
+type TabPropsEx r = PropsEx
   ( id :: String
   , isDisabled :: Boolean
   , panelId :: String
@@ -17,7 +21,7 @@ type TabPropsEx  r = PropsEx
   , _tabId :: String
   , initialSelectedTabIndex :: Number
   , selectedTabIndex :: Number
-  , onChange :: String     --- TODO (selectedTabIndex: number, prevSelectedTabIndex: number): void;
+  , onChange :: String                  --- TODO (selectedTabIndex: number, prevSelectedTabIndex: number): void;
   |r
   )
 

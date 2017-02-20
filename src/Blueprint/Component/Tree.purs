@@ -1,9 +1,15 @@
-module  Blueprint.Component.Tree where
-
-import React (ReactElement, createElement)
+module  Blueprint.Component.Tree
+ ( TreeProps
+ , TreePropsEx
+ , NumberORString
+ , tree
+ ) where
 
 import Blueprint.ComponentClass (treeClass)
 import Blueprint.Type (ComponentORString, Prop, PropsEx)
+import React (ReactElement, createElement)
+
+data NumberORString = String | Number
 
 type TreeProps = TreePropsEx ()
 
@@ -24,7 +30,9 @@ type TreePropsEx r = PropsEx
   |r
   )
 
-data NumberORString = String | Number
-
 tree :: Prop TreeProps -> Array ReactElement -> ReactElement
 tree = createElement treeClass
+
+-- export type TreeEventHandler = (node: ITreeNode, nodePath: number[], e: React.MouseEvent<HTMLElement>) => void;
+
+type TreeEventHandler = {node :: TreeProps, nodePath :: Array Number}

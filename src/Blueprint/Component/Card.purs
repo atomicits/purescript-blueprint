@@ -1,27 +1,35 @@
-module Blueprint.Component.Card where
+module Blueprint.Component.Card
+  ( CardModifier
+  , first
+  , second
+  , third
+  , fourth
+  , card
+  , interactiveCard
+  ) where
 
 import Prelude (($), (<>))
 
-import React
+import React (ReactElement)
 import React.DOM as RD
 import React.DOM.Props as RP
 
 newtype CardModifier =  CardModifier String
 
-cardModifiers ::
-  { ground_floor :: CardModifier
-  , first        :: CardModifier
-  , second       :: CardModifier
-  , third        :: CardModifier
-  , fourth       :: CardModifier
-  }
-cardModifiers =
-  { ground_floor : CardModifier "pt-elevation-0"
-  , first        : CardModifier "pt-elevation-1"
-  , second       : CardModifier "pt-elevation-2"
-  , third        : CardModifier "pt-elevation-3"
-  , fourth       : CardModifier "pt-elevation-4"
-  }
+ground_floor :: CardModifier
+ground_floor = CardModifier "pt-elevation-0"
+
+first :: CardModifier
+first  = CardModifier "pt-elevation-1"
+
+second :: CardModifier
+second = CardModifier "pt-elevation-2"
+
+third :: CardModifier
+third  = CardModifier "pt-elevation-3"
+
+fourth :: CardModifier
+fourth = CardModifier "pt-elevation-4"
 
 card :: CardModifier -> Array ReactElement -> ReactElement
 card (CardModifier m) c =
