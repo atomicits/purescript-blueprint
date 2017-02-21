@@ -1,12 +1,22 @@
 module Blueprint.ComponentClass where
 
-import React (ReactClass)
+import Prelude
+
+import Control.Monad.Eff (Eff)
+import React (ReactClass, ReactComponent, ReactElement)
+
+import Blueprint.Type (Offset)
+import Blueprint.Event (UnitEventHandler)
+
+
+
+
 
 foreign import alertClass :: forall props. ReactClass props
 
 -- DISCUSS: Please describe what would you like to discuss? so that its easy for me to answer!
 -- SFC need to discuss
-foreign import breadcrumbClass :: forall props. ReactClass props
+foreign import breadcrumbClass :: forall props. props -> ReactElement
 
 foreign import buttonClass :: forall props. ReactClass props
 foreign import anchorButtonClass :: forall props. ReactClass props
@@ -15,7 +25,7 @@ foreign import collapseClass :: forall props. ReactClass props
 foreign import collapsibleListClass :: forall props. ReactClass props
 
 -- need to discuss
-foreign import contextMenuTargetClass :: forall props. ReactClass props
+foreign import contextMenuTargetClass :: ReactComponent -> ReactElement
 
 foreign import datePickerClass :: forall props. ReactClass props
 foreign import dateRangePickerClass :: forall props. ReactClass props
@@ -32,7 +42,7 @@ foreign import radioClass :: forall props. ReactClass props
 foreign import radioGroupClass :: forall props. ReactClass props
 foreign import switchClass :: forall props. ReactClass props
 foreign import inputGroupClass :: forall props. ReactClass props
-
+foreign import numericInputClass :: forall props. ReactClass props
 foreign import hotkeyClass :: forall props. ReactClass props
 foreign import hotkeysClass :: forall props. ReactClass props
 
@@ -73,3 +83,8 @@ foreign import toastClass :: forall props. ReactClass props
 foreign import toasterClass :: forall props. ReactClass props
 foreign import tooltipClass :: forall props. ReactClass props
 foreign import treeClass :: forall props. ReactClass props
+
+
+foreign import contextMenuShow :: forall eff. ReactElement ->  Offset -> (UnitEventHandler eff) -> Eff eff Unit
+foreign import contextMenuHide :: forall eff. Eff eff Unit
+foreign import contextMenuIsOpen :: forall eff. Eff eff Boolean

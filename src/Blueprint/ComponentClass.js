@@ -21,6 +21,7 @@ exports.radioClass = BP.Radio;
 exports.radioGroupClass = BP.RadioGroup;
 exports.switchClass = BP.Switch;
 exports.inputGroupClass = BP.InputGroup;
+exports.numericInputClass = BP.NumericInput;
 exports.hotkeyClass = BP.Hotkey;
 exports.hotkeysClass = BP.Hotkeys;
 exports.hotkeysTargetClass = BP.HotkeysTarget;
@@ -38,12 +39,6 @@ exports.spinnerClass = BP.Spinner;
 exports.sVGSpinnerClass = BP.SVGSpinner;
 exports.sliderClass = BP.Slider;
 exports.rangeSliderClass = BP.RangeSlider;
-exports.tableClass = BP.Table;
-exports.columnClass = BP.Column;
-exports.cellClass = BP.Cell;
-exports.columnHeaderCellClass = BP.ColumnHeaderCell;
-exports.editableNameClass = BP.EditableName;
-exports.editableCellClass = BP.EditableCell;
 exports.tabsClass = BP.Tabs;
 exports.tabListClass = BP.TabList;
 exports.tabClass = BP.Tab;
@@ -53,3 +48,17 @@ exports.toastClass = BP.Toast;
 exports.toasterClass = BP.Toaster;
 exports.tooltipClass = BP.Tooltip;
 exports.treeClass = BP.Tree;
+
+const T = require("@blueprint/core");
+
+exports.tableClass = T.Table;
+exports.columnClass = T.Column;
+exports.cellClass = T.Cell;
+exports.columnHeaderCellClass = T.ColumnHeaderCell;
+exports.editableNameClass = T.EditableName;
+exports.editableCellClass = T.EditableCell;
+
+
+exports.contextMenuShow = BP.ContextMenu.show;
+exports.contextMenuHide = BP.ContextMenu.hide;
+exports.contextMenuIsOpen = BP.ContextMenu.isOpen;

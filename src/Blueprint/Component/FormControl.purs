@@ -1,165 +1,107 @@
-module Blueprint.Component.FormControl where
+module Blueprint.Component.FormControl
+  ( CheckboxProps
+  , SwitchProps
+  , RadioProps
+  , NumericInputProps
+  , ControlPropsEx
+  , IntOrString
+  , checkbox
+  , switch
+  , radio
+  , radioGroup
+  , numericInput
+  ) where
 
-import React
-import Blueprint.Type
-import Blueprint.Event (EventHandler)
-import Prelude
-import React.DOM as RD
-import React.DOM.Props as RP
 
-type FormControlProps = FormControlPropsEx ()
+import Control.Monad.Eff (Eff)
+import React (ReactElement, createElement)
 
-type FormControlPropsEx r = PropsEx
+import Blueprint.ComponentClass (checkboxClass, inputGroupClass, numericInputClass, radioClass, radioGroupClass, switchClass)
+import Blueprint.Type (ControlledPropsEx, Intent, OptionProps, Position, Prop, PropsEx, UnknownJSXElementType)
+import Blueprint.Event (EventHandler, EventHandler2, SyntheticEvent)
+
+
+
+type ControlProps eff a = ControlPropsEx eff a ()
+type ControlPropsEx eff a r =  PropsEx
   ( checked :: Boolean
   , defaultChecked :: Boolean
   , disabled :: Boolean
-  , inputRef :: String  --  (ref: HTMLInputElement) => any;
+  , inputRef ::   UnknownJSXElementType -> Eff eff a  --  (ref: HTMLInputElement) => any;
   , label :: String
-  , onChange :: String  -- EventHandler eff   -- React.FormEventHandler<HTMLInputElement>;
-  , leftIconName :: String
-  , placeholder :: String
-  , rightElement :: UnknownEventType
-  , type :: String
-  , rightElementWidth :: Number
-  , allowNumericCharactersOnly :: Boolean
-  , majorStepSize :: Number
-  , max :: Number
-  , min :: Number
-  , minorStepSizen :: Number
-  , stepSize :: Number
-  , value :: ComponentORString
-  , onValueChange ::  ComponentORString -> Unit -- (valueAsNumber: number, valueAsString: string): void;
-  , name :: String
-  , options :: OptionProps
-  , selectedValue :: String
-  , buttonPosition :: Position
-  |r
+  , onChange :: EventHandler eff (SyntheticEvent eff)  -- React.FormEventHandler<HTMLInputElement>;
+  | r
   )
 
--- newtype LabelModifier = LabelModifier String
 
--- inline :: LabelModifier
--- inline = LabelModifier "pt-inline"
+type CheckboxProps eff a = ControlPropsEx eff a
+  ( defaultIndeterminate :: Boolean
+  , indeterminate :: Boolean
+  )
 
--- newtype CheckBoxModifier = CheckBoxModifier String
-
--- checkBoxchecked :: CheckBoxModifier
--- checkBoxchecked = CheckBoxModifier "checked"
-
--- checkBoxdisabled :: CheckBoxModifier
--- checkBoxdisabled = CheckBoxModifier "disabled"
-
--- checkBoxindeterminate :: CheckBoxModifier
--- checkBoxindeterminate = CheckBoxModifier "indeterminate"
-
--- checkBoxrightAligned :: CheckBoxModifier
--- checkBoxrightAligned = CheckBoxModifier "pt-align-right"
-
--- checkBoxlarge :: CheckBoxModifier
--- checkBoxlarge = CheckBoxModifier "pt-large"
-
--- newtype RadioModifier = RadioModifier String
-
--- radioselected :: RadioModifier
--- radioselected = RadioModifier "checked"
-
--- radiodisabled :: RadioModifier
--- radiodisabled = RadioModifier "disabled"
-
--- radiorightAligned :: RadioModifier
--- radiorightAligned = RadioModifier "pt-align-right"
-
--- radiolarge :: RadioModifier
--- radiolarge = RadioModifier "pt-large"
-
--- newtype SwitchModifier = SwitchModifier String
-
--- switchselected :: SwitchModifier
--- switchselected = SwitchModifier "checked"
-
--- switchdisabled :: SwitchModifier
--- switchdisabled = SwitchModifier "disabled"
-
--- switchrightAligned :: SwitchModifier
--- switchrightAligned = SwitchModifier "pt-align-right"
-
--- switchlarge :: SwitchModifier
--- switchlarge = SwitchModifier "pt-large"
-
--- textInputRoundedends :: TextInputModifier
--- textInputRoundedends = TextInputModifier "pt-round"
-
--- textInputlarge :: TextInputModifier
--- textInputlarge = TextInputModifier "pt-large"
-
--- textInputprimary :: TextInputModifier
--- textInputprimary = TextInputModifier "pt-intent-primary"
-
--- textInputsuccess :: TextInputModifier
--- textInputsuccess = TextInputModifier "pt-intent-success"
-
--- textInputwarning :: TextInputModifier
--- textInputwarning = TextInputModifier "pt-intent-warning"
-
--- textInputdanger :: TextInputModifier
--- textInputdanger = TextInputModifier "pt-intent-danger"
-
--- textInputfill :: TextInputModifier
--- textInputfill = TextInputModifier "pt-fill"
-
-newtype TextInputModifier = TextInputModifier String
-
-textInputDisabled :: TextInputModifier
-textInputDisabled = TextInputModifier "disabled"
-
-textInputReadonly :: TextInputModifier
-textInputReadonly = TextInputModifier "readonly"
+checkbox :: forall eff a . Prop (CheckboxProps eff a) -> Array ReactElement -> ReactElement
+checkbox = createElement checkboxClass
 
 
-textInputModifier ::
-  { textInputRoundedends :: TextInputModifier
-  , textInputLarge :: TextInputModifier
-  , textInputPrimary :: TextInputModifier
-  , textInputSuccess :: TextInputModifier
-  , textInputWarning :: TextInputModifier
-  , textInputDanger :: TextInputModifier
-  , textInputFill :: TextInputModifier
-  }
-textInputModifier =
-  { textInputRoundedends : TextInputModifier "pt-round"
-  , textInputLarge       : TextInputModifier "pt-large"
-  , textInputPrimary     : TextInputModifier "pt-intent-primary"
-  , textInputSuccess     : TextInputModifier "pt-intent-success"
-  , textInputWarning     : TextInputModifier "pt-intent-warning"
-  , textInputDanger      : TextInputModifier "pt-intent-danger"
-  , textInputFill        :  TextInputModifier "pt-fill"
+type SwitchProps eff a  = ControlPropsEx eff a ()
+
+switch :: forall eff a . Prop (SwitchProps eff a) -> Array ReactElement -> ReactElement
+switch = createElement switchClass
+
+
+type RadioProps eff a  = ControlPropsEx eff a ()
+
+radio :: forall eff a . Prop (RadioProps eff a) -> Array ReactElement -> ReactElement
+radio = createElement radioClass
+
+
+type RadioGroupProps eff =
+  { disabled :: Boolean
+  , label :: String
+  , name :: String
+  , onChange ::  EventHandler eff (SyntheticEvent eff)
+  , options :: Array OptionProps
+  , selectedValue :: String
   }
 
 
-newtype TextAreaModifier = TextAreaModifier String
+radioGroup :: forall eff.  Prop (RadioGroupProps eff) -> Array ReactElement -> ReactElement
+radioGroup = createElement radioGroupClass
 
-textAreaDisabled :: TextAreaModifier
-textAreaDisabled = TextAreaModifier "disabled"
 
-textAreaReadonly :: TextAreaModifier
-textAreaReadonly = TextAreaModifier "readonly"
+type InputGroupProps eff a = ControlledPropsEx eff
+  ( className :: String
+  , intent :: Intent
+  , disabled :: Boolean
+  , inputRef :: ReactElement -> Eff eff a
+  , leftIconName :: String
+  , placeholder :: String
+  , rightElement :: UnknownJSXElementType
+  , type :: String
+  )
 
-textAreaModifier ::
-  { textAreaLarge :: TextAreaModifier
-  , textAreaPrimary :: TextAreaModifier
-  , textAreaDanger :: TextAreaModifier
-  , textAreaFill :: TextAreaModifier
+
+inputGroup :: forall eff a . Prop (InputGroupProps eff a) -> ReactElement
+inputGroup p = createElement inputGroupClass p []
+
+data IntOrString = Int | String
+
+type NumericInputProps eff =
+  { className :: String
+  , intent :: Intent
+  , allowNumericCharactersOnly :: Boolean
+  , buttonPosition :: Position
+  , disabled :: Boolean
+  , leftIconName :: String
+  , placeholder :: String
+  , majorStepSize :: Int
+  , max :: Int
+  , min :: Int
+  , minorStepSize :: Number
+  , stepSize :: Int
+  , value :: IntOrString
+  , onValueChange :: EventHandler2 eff Int String
   }
-textAreaModifier =
-  { textAreaLarge       : TextAreaModifier "pt-large"
-  , textAreaPrimary     : TextAreaModifier "pt-intent-primary"
-  , textAreaDanger      : TextAreaModifier "pt-intent-danger"
-  , textAreaFill        : TextAreaModifier "pt-fill"
-  }
 
-
-
-
-textInput :: TextInputModifier -> Array ReactElement -> ReactElement
-textInput (TextInputModifier m) c =
-  RD.div [ RP.className $ "pt-input " <> m] c
+numericInput :: forall eff . Prop (NumericInputProps eff) -> Array ReactElement -> ReactElement
+numericInput = createElement numericInputClass
