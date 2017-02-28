@@ -31,3 +31,4 @@ import Blueprint.Component.Tag (TagProps, tag) as B
 import Blueprint.Component.Toast (ActionOpt, ToastOptions, ToastProps, ToastPropsEx, toast, toaster) as B
 import Blueprint.Component.Tooltip (TooltipProps, TooltipPropsEx, tooltip) as B
 import Blueprint.Component.Tree (NumberORString, TreeProps, TreePropsEx, tree) as B
+import Blueprint.Component.DateTime (DateInputProps, DatePickerBasePropsEx, DatePickerProps, DateRange, DateRangePickerProps, DateTimePickerProps, ShortCuts, TimePickerPrecision, TimePickerProps, dateInput, datePicker, dateRangePicker, dateTimePicker, getDatePickerModifier, getDateRange, milliseconds, minutes, seconds, timePicker) as B
