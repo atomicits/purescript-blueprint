@@ -1,10 +1,9 @@
 module Blueprint.Component.Table.Cell where
 
+import Blueprint.Event (EventHandler)
+import Blueprint.Type (Intent, PropsEx, UnknownStyleType)
+import Prelude (Unit)
 
-import Prelude
-import React
-import Blueprint.ComponentClass
-import Blueprint.Type
 
 type CellRenderer = {} -- (rowIndex: number, columnIndex: number) => React.ReactElement<ICellProps>;
 
@@ -12,7 +11,7 @@ type CellProps = CellPropsEx ()
 
 type CellPropsEx r = PropsEx
   ( key :: String
-  , style :: String -- React.CSSProperties;
+  , style :: UnknownStyleType
   , interactive :: Boolean
   , loading :: Boolean
   , tooltip :: String
@@ -21,20 +20,20 @@ type CellPropsEx r = PropsEx
   |r
   )
 
-type EditableCellProps = EditableCellPropsEx ()
+type EditableCellProps eff   = EditableCellPropsEx eff ()
 
-type EditableCellPropsEx r = CellPropsEx
+type EditableCellPropsEx eff r = CellPropsEx
   ( value :: String
-  , onCancel :: String -> Unit -- (value: string) => void;
-  , onChange :: String -> Unit -- (value: string) => void;
-  , onConfirm :: String -> Unit -- (value: string) => void;
+  , onCancel :: EventHandler eff Unit
+  , onChange :: EventHandler eff Unit
+  , onConfirm :: EventHandler eff Unit
   , isEditing :: Boolean
   |r
   )
 
 
-data TruncatedPopoverMode
-   =  ALWAYS
+data TruncatedPopoverMode  --- Enum
+   = ALWAYS
    | NEVER
    | WHEN_TRUNCATED
 
@@ -51,8 +50,8 @@ type TruncatedFormatPropsEx r = PropsEx
   |r
   )
 
-type JSONFormatProps = TruncatedFormatPropsEx
-  ( children :: String -- any
+type JSONFormatProps a = TruncatedFormatPropsEx
+  ( children ::  a
   , omitQuotesOnStrings :: Boolean
-  , stringify :: String -- (obj: any) => string;
+  , stringify :: a -> String
   )
