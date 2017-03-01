@@ -1,38 +1,71 @@
 module  Blueprint.Component.Tree
- ( TreeProps
- , TreePropsEx
- , NumberORString
- , tree
- ) where
+  ( NumberORString
+  , TreeProps
+  , TreePropsEx
+  , TreeNode
+  , TreeNodeProps
+  , TreeNodePropsEx
+  , tree
+  , TreeEventHandler
+  )  where
 
+import Blueprint.Event
 import Blueprint.ComponentClass (treeClass)
-import Blueprint.Type (ComponentORString, Prop, PropsEx)
+import Blueprint.Type (ComponentORString, Prop, PropsEx, UnknownFunctionType, UnknownReactType)
 import React (ReactElement, createElement)
+
 
 data NumberORString = String | Number
 
-type TreeProps = TreePropsEx ()
+type TreeEventHandler eff =
+  { node :: TreeNode
+  , nodePath ::Array Number
+  , e :: EventHandler eff (MouseEvent eff)
+  }
 
-type TreePropsEx r = PropsEx
-  ( hasCaret :: Boolean
+type TreeProps eff  = TreePropsEx eff ()
+
+type TreePropsEx eff r = PropsEx
+  ( contents :: Array TreeNode
+  , onNodeClick :: TreeEventHandler eff
+  , onNodeCollapse :: TreeEventHandler eff
+  , onNodeContextMenu :: TreeEventHandler eff
+  , onNodeDoubleClick :: TreeEventHandler eff
+  , onNodeExpand :: TreeEventHandler eff
+  |r
+  )
+
+newtype TreeNode = TreeNode
+  { childNodes :: Array TreeNode
+  , className :: String
+  , hasCaret :: Boolean
   , iconName :: String
   , id :: NumberORString
   , isExpanded :: Boolean
   , isSelected :: Boolean
   , label :: ComponentORString
   , secondaryLabel :: ComponentORString
-  , contents :: String            --- TODO ITreeNode[];
-  , onNodeClick :: String         --- TODO TreeEventHandler
-  , onNodeCollapse :: String      --- TODO TreeEventHandler
-  , onNodeContextMenu :: String   --- TODO TreeEventHandler
-  , onNodeDoubleClick :: String   --- TODO TreeEventHandler
-  , onNodeExpand :: String        --- TODO TreeEventHandler
+  }
+
+type TreeNodeProps = TreeNodePropsEx ()
+
+type TreeNodePropsEx r =
+  ( children :: UnknownReactType
+  , contentRef :: UnknownFunctionType
+  , depth :: Number
+  , key :: NumberORString
+  , onClick :: UnknownFunctionType
+  , onCollapse :: UnknownFunctionType
+  , onContextMenu :: UnknownFunctionType
+  , onDoubleClick :: UnknownFunctionType
+  , onExpand :: UnknownFunctionType
+  , path :: Array Number
   |r
   )
 
-tree :: Prop TreeProps -> Array ReactElement -> ReactElement
+
+
+
+
+tree :: forall eff. Prop (TreeProps eff) -> Array ReactElement -> ReactElement
 tree = createElement treeClass
-
--- export type TreeEventHandler = (node: ITreeNode, nodePath: number[], e: React.MouseEvent<HTMLElement>) => void;
-
-type TreeEventHandler = {node :: TreeProps, nodePath :: Array Number}

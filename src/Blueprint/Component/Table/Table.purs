@@ -1,16 +1,14 @@
 module Blueprint.Component.Table.Table where
 
-import Prelude (Unit)
-
-import React (ReactElement, createElement)
-
+import Blueprint.Component.TableClass
 import Blueprint.Component.Table.Headers (RowHeaderRenderer)
 import Blueprint.Component.Table.Interactions (ContextMenuRenderer, IndexedResizeCallback, SelectedRegionTransform)
 import Blueprint.Component.Table.Locator (Locator)
 import Blueprint.Component.Table.Regions (Region, RegionCardinality, StyledRegionGroup, TableLoadingOption)
-import Blueprint.Component.TableClass
 import Blueprint.Event (EventHandler)
-import Blueprint.Type (PropsEx, Prop)
+import Blueprint.Type (Prop, PropsEx, UnknownReactType)
+import Prelude (Unit)
+import React (ReactElement, createElement)
 
 type TableProps eff a  = TablePropsEx eff a  ()
 
@@ -18,7 +16,7 @@ type TablePropsEx eff a r = PropsEx
   ( allowMultipleSelection :: Boolean
   , children :: ReactElement
   , fillBodyWithGhostCells :: Boolean
-  , getCellClipboardData ::  Number -> Number -> a
+  , getCellClipboardData :: Number -> Number -> a
   , isColumnResizable :: Boolean
   , loadingOptions ::  TableLoadingOption
   , onColumnWidthChanged :: IndexedResizeCallback
@@ -36,7 +34,7 @@ type TablePropsEx eff a r = PropsEx
   , styledRegionGroups :: StyledRegionGroup
   , locator ::  Locator
   , isLayoutLocked :: Boolean
-  , viewportRect :: String -- Rect;
+  , viewportRect :: UnknownReactType  -- Rect;
   , verticalGuides ::  Array Number
   , horizontalGuides :: Array Number
   , rowHeights:: Array Number

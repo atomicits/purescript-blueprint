@@ -2,8 +2,8 @@ module Blueprint.Component.Table.Regions where
 
 import React (ReactElement, createElement)
 
-import Blueprint.Component.TableClass (columnLoadingOptionClass, regionCardinalityClass, regionsClass
-  , rowLoadingOptionClass, selectionModesClass, tableLoadingOptionClass)
+import Blueprint.Component.TableClass (columnLoadingOptionClass, regionCardinalityClass, regionsClass,
+   rowLoadingOptionClass, selectionModesClass, tableLoadingOptionClass)
 import Blueprint.Type (Prop)
 
 --- RegionCardinality
@@ -104,7 +104,6 @@ regions = createElement regionsClass
 
 selectionModes :: Prop SelectionModes -> Array ReactElement -> ReactElement
 selectionModes = createElement selectionModesClass
-
 
 regionCardinality :: Prop RegionCardinality -> Array ReactElement -> ReactElement
 regionCardinality = createElement regionCardinalityClass

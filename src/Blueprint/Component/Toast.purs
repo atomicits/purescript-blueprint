@@ -25,10 +25,7 @@ type ActionOpt eff = ActionPropsEx eff
   , target :: String
   )
 
-
-type ToastOptions eff = ToastPropsEx eff
-  ( key :: String
-  )
+type ToastOptions eff = ToastPropsEx eff ( key :: String )
 
 
 toast :: forall eff. Prop (ToastProps eff) -> Array ReactElement -> ReactElement

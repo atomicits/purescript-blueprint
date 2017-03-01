@@ -26,7 +26,7 @@ import Blueprint.Component.ProgressBar (ProgressBarProps, progressBar) as B
 import Blueprint.Component.Slider (NumberRange, RenderLabel, SliderProps, SliderPropsEx, slider) as B
 import Blueprint.Component.Spinner (SpinnerProps, spinner) as B
 import Blueprint.Component.TableHtml (TableHtmlModifier(TableHtmlModifier), tableHtml, tableHtmlModifiers) as B
-import Blueprint.Component.Tab (TabProps, TabPropsEx, tab) as B
+import Blueprint.Component.Tab (TabProps, tab, TabList, TabPanel, tabPanel, Tabs, tabs) as B
 import Blueprint.Component.Tag (TagProps, tag) as B
 import Blueprint.Component.Toast (ActionOpt, ToastOptions, ToastProps, ToastPropsEx, toast, toaster) as B
 import Blueprint.Component.Tooltip (TooltipProps, TooltipPropsEx, tooltip) as B

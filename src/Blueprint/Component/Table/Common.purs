@@ -1,5 +1,7 @@
 module Blueprint.Component.Table.Common where
 
+import Blueprint.Type
+
 --- loadableContent
 
 type LoadableContentProps =
@@ -22,8 +24,8 @@ type ColumnIndices =
 --- contextMenuTargetWrapper
 
 type ContextMenuTargetWrapper =
-  { renderContextMenu :: String --  (e: React.MouseEvent<HTMLElement>) => JSX.Element
-  , style :: String --  React.CSSProperties
+  { renderContextMenu :: UnknownEventType  --  (e: React.MouseEvent<HTMLElement>) => JSX.Element
+  , style :: UnknownStyleType  --  React.CSSProperties
   }
 
 --- utils
