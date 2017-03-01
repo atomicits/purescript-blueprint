@@ -1,21 +1,22 @@
 module Blueprint.Component.Table.Column where
 
-import Prelude
+import React (ReactElement, createElement)
 
-import React
-
-import Blueprint.Component.Table.Cell
-import Blueprint.Component.Table.Headers
-import Blueprint.Component.Table.Regions
-import Blueprint.ComponentClass
-import Blueprint.Type
+import Blueprint.Component.Table.Cell (CellRenderer)
+import Blueprint.Component.Table.Headers (ColumnHeaderRenderer, ColumnNameProps)
+import Blueprint.Component.Table.Regions (ColumnLoadingOptions)
+import Blueprint.Component.TableClass (columnClass)
+import Blueprint.Type (Prop, PropsEx)
 
 data NumberOrString = Number | String
 
 type ColumnProps = PropsEx
   ( id :: NumberOrString
-  , loadingOptions :: Array  ColumnLoadingOptions -- ColumnLoadingOption []
+  , loadingOptions :: Array ColumnLoadingOptions
   , renderCell :: CellRenderer
   , renderColumnHeader :: ColumnHeaderRenderer
   , columnNameProps :: ColumnNameProps
   )
+
+column :: Prop ColumnProps -> Array ReactElement -> ReactElement
+column = createElement columnClass

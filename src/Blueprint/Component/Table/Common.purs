@@ -1,12 +1,5 @@
 module Blueprint.Component.Table.Common where
 
-import Prelude
-
-import React
-
-import Blueprint.ComponentClass
-import Blueprint.Type
-
 --- loadableContent
 
 type LoadableContentProps =

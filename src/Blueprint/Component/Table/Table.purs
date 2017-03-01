@@ -1,14 +1,16 @@
 module Blueprint.Component.Table.Table where
 
-import Blueprint.Component.TableClass
+import Prelude (Unit)
+
+import React (ReactElement, createElement)
+
 import Blueprint.Component.Table.Headers (RowHeaderRenderer)
 import Blueprint.Component.Table.Interactions (ContextMenuRenderer, IndexedResizeCallback, SelectedRegionTransform)
 import Blueprint.Component.Table.Locator (Locator)
 import Blueprint.Component.Table.Regions (Region, RegionCardinality, StyledRegionGroup, TableLoadingOption)
+import Blueprint.Component.TableClass
 import Blueprint.Event (EventHandler)
 import Blueprint.Type (PropsEx, Prop)
-import Prelude (Unit)
-import React (ReactElement, createElement)
 
 type TableProps eff a  = TablePropsEx eff a  ()
 
@@ -42,5 +44,6 @@ type TablePropsEx eff a r = PropsEx
   |r
   )
 
-table :: forall eff a.  Prop (TableProps eff a) -> Array ReactElement -> ReactElement
+
+table :: forall eff a. Prop (TableProps eff a) -> Array ReactElement -> ReactElement
 table = createElement tableClass

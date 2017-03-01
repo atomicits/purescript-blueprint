@@ -1,13 +1,15 @@
 module Blueprint.Component.Table.Interactions where
 
-import Prelude
+import Prelude (Unit)
 
-import React
+import Control.Monad.Eff (Eff)
+import React (ReactElement, createElement)
 
-import Blueprint.Component.Menu
-import Blueprint.Component.Table.Regions
-import Blueprint.ComponentClass
-import Blueprint.Type
+import Blueprint.Component.Menu (MenuItemPropsEx)
+import Blueprint.Component.Table.Regions (Region)
+import Blueprint.Component.TableClass
+import Blueprint.Event (EventHandler2, MouseEvent, UnitEventHandler, EventHandler)
+import Blueprint.Type (PropsEx, Prop)
 
 -- IDraggableProps
 
@@ -21,24 +23,25 @@ type CoordinateData =
   , offset :: ClientCoordinates
   }
 
-type DragHandler =
-  { onActivate :: String --- (event: MouseEvent) => boolean
-  , onDragMove :: String -- (event: MouseEvent, coords: CoordinateData) => void
-  , onDragEnd  :: String -- (event: MouseEvent, coords: CoordinateData) => void
-  , onClick    :: String -- (event: MouseEvent) => void
-  , onDoubleClick   :: String -- (event: MouseEvent) => void
+type DragHandler eff = DragHandlerEx eff ()
+
+type DragHandlerEx eff r =
+  ( onActivate :: MouseEvent eff -> Boolean
+  , onDragMove :: MouseEvent eff -> CoordinateData -> Unit
+  , onDragEnd  :: MouseEvent eff -> CoordinateData -> Unit
+  , onClick    :: MouseEvent eff -> Unit
+  , onDoubleClick   :: MouseEvent eff -> Unit
   , preventDefault  :: Boolean
   , stopPropagation :: Boolean
-  }
+  | r
+  )
 
-type DraggableProps = DraggablePropsEx ()
-
-type DraggablePropsEx r = PropsEx
-  ( dragHandler :: DragHandler |r )
+type DraggableProps eff  = DragHandlerEx eff
+  ( className :: String )
 
 --- IResizeHandleProps
 
-type LockableLayout = { onLayoutLock :: Boolean -> Unit } -- (isLayoutLocked?: boolean) => void
+type LockableLayout eff = { isLayoutLocked ::  EventHandler eff Unit }
 
 newtype Orientation = Orientation Int
 
@@ -48,50 +51,37 @@ horizondal = Orientation 1
 vertical :: Orientation
 vertical = Orientation 0
 
-type ResizeHandleProps = ResizeHandlePropsEx ()
+type ResizeHandleProps eff = ResizeHandlePropsEx eff ()
 
-type ResizeHandlePropsEx r = PropsEx
-  ( onResizeMove :: Number -> Number -> Unit  --(offset: number, delta: number) => void
-  , onResizeEnd :: Number -> Unit  --  (offset: number) => void;
-  , onDoubleClick :: Unit   --  () => void;
+type ResizeHandlePropsEx eff r = PropsEx
+  ( onResizeMove :: EventHandler2 eff (Number -> Number) Unit
+  , onResizeEnd :: EventHandler eff Unit
+  , onDoubleClick :: UnitEventHandler eff
   , orientation :: Orientation
   , isDragging :: Boolean
-  , lockableLayout :: LockableLayout
+  , lockableLayout :: LockableLayout eff
   |r
   )
 
---- IResizableProps
+-- --- IResizableProps
 
 type IndexedResizeCallback = {} -- (index: number, size: number) => void; }
-
-type ResizableProps = PropsEx
-  ( isResizable :: Boolean
-  , maxSize :: Number
-  , minSize :: Number
-  , onSizeChanged :: Number -> Unit  --(size: number) => void;
-  , onResizeEnd :: Number -> Unit -- (size: number) => void;
-  , onDoubleClick :: Unit  --  () => void;
-  , orientation :: Orientation
-  , size :: Number
-  , unclampedSize :: Number
-  , lockableLayout :: LockableLayout
-  )
 
 ---- IDragSelectableProps
 
 type SelectedRegionTransform = {} --  (region: IRegion, event: MouseEvent, coords?: ICoordinateData) => IRegion;
 
-type SelectableProps =
+type SelectableProps eff  =
   { allowMultipleSelection :: Boolean
-  , onSelection :: Region -> Unit -- (regions: IRegion[]) => void;
+  , onSelection :: Array Region -> Eff eff Unit
   , selectedRegions :: Region
   , selectedRegionTransform :: SelectedRegionTransform
   }
 
-type DragSelectableProps =
-  ( locateClick :: String   -- (event: MouseEvent) => IRegion;
-  , locateDrag :: String   ---  (event: MouseEvent, coords: ICoordinateData) => IRegion;
-  , selectableProps :: SelectableProps
+type DragSelectableProps eff =
+  ( locateClick :: (MouseEvent eff) -> Region
+  , locateDrag :: (MouseEvent eff) -> CoordinateData -> Region
+  , selectableProps :: SelectableProps eff
   )
 
 ----  IMenuContext
@@ -99,16 +89,31 @@ type DragSelectableProps =
 type ContextMenuRenderer = {} --(context: IMenuContext) => JSX.Element;
 
 type MenuContext =
-  { getRegions :: Unit -> Region  -- () => IRegion[];
-  , getSelectedRegions :: Unit -> Region  -- () => IRegion[];
-  , getTarget :: Unit -> Region  ---  () => IRegion;
-  , getUniqueCells :: Unit -> CoordinateData  -- () => ICellCoordinate[];
+  { getRegions :: Unit -> Array Region
+  , getSelectedRegions :: Unit -> Array Region
+  , getTarget :: Unit -> Region
+  , getUniqueCells :: Unit -> Array CoordinateData
   }
 
 ---- ICopyCellsMenuItemProps
 
-type CopyCellsMenuItemProps eff = MenuItemPropsEx eff
+type CopyCellsMenuItemProps a eff = MenuItemPropsEx eff
   ( context :: MenuContext
-  , getCellData :: String   -- (row: number, col: number) => any;
-  , onCopy :: Boolean -> Unit  ---  (success: boolean) => void;
+  , getCellData :: Number -> Number -> a
+  , onCopy :: EventHandler eff Unit
   )
+
+draggable :: forall t1. t1 -> Array ReactElement -> ReactElement
+draggable = createElement draggableClass
+
+copyCellsMenuItem :: forall a eff. Prop (CopyCellsMenuItemProps a eff) -> Array ReactElement -> ReactElement
+copyCellsMenuItem = createElement copyCellsMenuItemClass
+
+dragSelectable :: forall t3. t3 -> Array ReactElement -> ReactElement
+dragSelectable = createElement dragSelectableClass
+
+resizeHandle :: forall eff. Prop (ResizeHandleProps eff) -> Array ReactElement -> ReactElement
+resizeHandle = createElement resizeHandleClass
+
+orientation :: Prop Orientation -> Array ReactElement -> ReactElement
+orientation = createElement orientationClass

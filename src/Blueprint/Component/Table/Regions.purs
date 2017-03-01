@@ -1,9 +1,10 @@
 module Blueprint.Component.Table.Regions where
 
-import Prelude
-import React
-import Blueprint.ComponentClass
-import Blueprint.Type
+import React (ReactElement, createElement)
+
+import Blueprint.Component.TableClass (columnLoadingOptionClass, regionCardinalityClass, regionsClass
+  , rowLoadingOptionClass, selectionModesClass, tableLoadingOptionClass)
+import Blueprint.Type (Prop)
 
 --- RegionCardinality
 
@@ -96,3 +97,23 @@ smRowsAndCells = [fullRows, cells]
 
 smRowsOnly :: Array  RegionCardinality
 smRowsOnly = [fullRows]
+
+
+regions :: Prop Region -> Array ReactElement -> ReactElement
+regions = createElement regionsClass
+
+selectionModes :: Prop SelectionModes -> Array ReactElement -> ReactElement
+selectionModes = createElement selectionModesClass
+
+
+regionCardinality :: Prop RegionCardinality -> Array ReactElement -> ReactElement
+regionCardinality = createElement regionCardinalityClass
+
+columnLoadingOption :: Prop ColumnLoadingOptions -> Array ReactElement -> ReactElement
+columnLoadingOption = createElement columnLoadingOptionClass
+
+rowLoadingOption :: Prop RowLoadingOptions -> Array ReactElement -> ReactElement
+rowLoadingOption = createElement rowLoadingOptionClass
+
+tableLoadingOptions :: Prop TableLoadingOption -> Array ReactElement -> ReactElement
+tableLoadingOptions = createElement tableLoadingOptionClass

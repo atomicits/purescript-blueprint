@@ -1,21 +1,18 @@
 module Blueprint.Component.Table.Headers where
 
-import Prelude
-import React
-import Blueprint.Component.Table.Common
-import Blueprint.Component.Table.Locator
-import Blueprint.ComponentClass
-import Blueprint.Type
-import Blueprint.Component.Table.Interactions
-import Control.Monad.Eff (Eff)
+import Prelude (Unit)
 
+import React (ReactElement, createElement)
 
+import Blueprint.Component.TableClass
+import Blueprint.Event (EventHandler)
+import Blueprint.Type (Intent, PropsEx, UnknownJSXElementType, UnknownStyleType, Prop)
 
 ---- ColumnHeaderCellProps
 
 type ColumnNameProps =
   { name :: String
-  , renderName :: String  -- (name: string) => React.ReactElement<IProps>;
+  , renderName :: String -> ReactElement
   , useInteractionBar :: Boolean
   }
 
@@ -25,11 +22,10 @@ type ColumnHeaderCellPropsEx r  = PropsEx
   ( isActive :: Boolean
   , isColumnSelected :: Boolean
   , loading :: Boolean
-  , menu :: String -- JSX.Element;
+  , menu :: UnknownJSXElementType
   , menuIconName :: String
-  , style :: String -- React.CSSProperties;
+  , style :: UnknownStyleType
   , resizeHandle :: String -- ResizeHandle; -- need to discuss
-  , isActive :: Boolean
   , columnNameProps :: ColumnNameProps
   |r
   )
@@ -44,32 +40,13 @@ type ColumnWidths  =
   , defaultColumnWidth :: Number
   }
 
-type ColumnHeaderProps = ColumnHeaderPropsEx ()
-
-type ColumnHeaderPropsEx r =
-  ( cellRenderer :: ColumnHeaderRenderer
-  , grid :: String --Grid
-  , loading :: Boolean
-  , locator :: Locator
-  , columnWidths :: ColumnWidths
-  , columnIndices :: ColumnIndices
-  , viewportRect :: String -- Rect
-  , isResizable :: Boolean
-  , selectableProps :: SelectableProps
-  , columnIndices :: ColumnIndices
-  , lockableLayout :: LockableLayout
-  , onColumnWidthChanged :: IndexedResizeCallback
-  , onResizeGuide :: Number -> Unit  -- guides: number[]) => void;
-  | r
-  )
-
 --- IEditableNameProps
 
-type EditableNameProps = PropsEx
+type EditableNameProps eff = PropsEx
   ( name :: String
-  , onCancel :: String -> Unit --(value: string) => void;
-  , onChange :: String -> Unit -- (value: string) => void;
-  , onConfirm :: String -> Unit -- (value: string) => void;
+  , onCancel :: EventHandler eff Unit
+  , onChange :: EventHandler eff Unit
+  , onConfirm :: EventHandler eff Unit
   , intent :: Intent
   )
 
@@ -80,12 +57,11 @@ type RowHeaderCellProps = RowHeaderCellPropsEx ()
 type RowHeaderCellPropsEx r = PropsEx
   ( isActive :: Boolean
   , isRowSelected :: Boolean
-  ,  name :: String
+  , name :: String
   , loading :: Boolean
-  , menu :: String -- JSX.Element;
+  , menu :: UnknownJSXElementType
   , resizeHandle :: String --  ResizeHandle;
-  , style :: String --  React.CSSProperties;
-  , isActive :: Boolean
+  , style :: UnknownStyleType
   |r
   )
 
@@ -100,18 +76,13 @@ type RowHeights =
   , defaultRowHeight :: Number
   }
 
-type RowHeaderProps eff =
-  ( isResizable :: Boolean
-  , grid :: String --Grid
-  , loading :: Boolean
-  , locator :: Locator
-  , onResizeGuide :: Array Number -> Eff eff Unit --- (guides: number[]) => void;
-  , onRowHeightChanged :: IndexedResizeCallback
-  , renderRowHeader :: RowHeaderRenderer
-  , viewportRect :: String -- Rect;
-  , rowHeights :: RowHeights
-  , rowIndices :: RowIndices
-  , selectableProps :: SelectableProps
-  , rowIndices :: RowIndices
-  , lockableLayout :: LockableLayout
-  )
+
+columnHeaderCell :: Prop ColumnHeaderCellProps -> Array ReactElement -> ReactElement
+columnHeaderCell = createElement columnHeaderCellClass
+
+
+editableName :: forall eff. Prop (EditableNameProps eff) -> Array ReactElement -> ReactElement
+editableName = createElement editableNameClass
+
+rowHeaderCell :: Prop RowHeaderCellProps -> Array ReactElement -> ReactElement
+rowHeaderCell = createElement rowHeaderCellClass

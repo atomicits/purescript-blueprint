@@ -1,9 +1,11 @@
 module Blueprint.Component.Table.Cell where
 
-import Blueprint.Event (EventHandler)
-import Blueprint.Type (Intent, PropsEx, UnknownStyleType)
 import Prelude (Unit)
+import React (ReactElement, createElement)
 
+import Blueprint.Component.TableClass (cellClass, editableCellClass, jSONFormatClass, truncatedFormatClass, truncatedPopoverModeClass)
+import Blueprint.Event (EventHandler)
+import Blueprint.Type (Intent, PropsEx, UnknownStyleType, Prop)
 
 type CellRenderer = {} -- (rowIndex: number, columnIndex: number) => React.ReactElement<ICellProps>;
 
@@ -31,11 +33,17 @@ type EditableCellPropsEx eff r = CellPropsEx
   |r
   )
 
+newtype TruncatedPopoverMode = TruncatedPopoverMode Int
 
-data TruncatedPopoverMode  --- Enum
-   = ALWAYS
-   | NEVER
-   | WHEN_TRUNCATED
+always :: TruncatedPopoverMode
+always = TruncatedPopoverMode 0
+
+never :: TruncatedPopoverMode
+never = TruncatedPopoverMode 1
+
+whenTruncated :: TruncatedPopoverMode
+whenTruncated = TruncatedPopoverMode 2
+
 
 type TruncatedFormatProps = TruncatedFormatPropsEx ()
 
@@ -51,7 +59,22 @@ type TruncatedFormatPropsEx r = PropsEx
   )
 
 type JSONFormatProps a = TruncatedFormatPropsEx
-  ( children ::  a
-  , omitQuotesOnStrings :: Boolean
+  ( omitQuotesOnStrings :: Boolean
   , stringify :: a -> String
   )
+
+
+cell :: Prop CellProps -> Array ReactElement -> ReactElement
+cell = createElement cellClass
+
+editableCell :: forall eff. Prop (EditableCellProps eff) -> Array ReactElement -> ReactElement
+editableCell = createElement editableCellClass
+
+jSONFormate :: forall a. Prop (JSONFormatProps a) -> Array ReactElement -> ReactElement
+jSONFormate = createElement jSONFormatClass
+
+truncatedFormat :: Prop TruncatedFormatProps -> Array ReactElement -> ReactElement
+truncatedFormat = createElement truncatedFormatClass
+
+truncatedPopoverMode :: Prop TruncatedPopoverMode -> Array ReactElement -> ReactElement
+truncatedPopoverMode = createElement truncatedPopoverModeClass
