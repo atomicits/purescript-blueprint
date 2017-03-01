@@ -1,29 +1,43 @@
-module Blueprint.Component.Tab
-  ( TabProps
-  , TabPropsEx
-  , tab
-  ) where
+module Blueprint.Component.Tab  where
 
 import React (ReactElement, createElement)
 
-import Blueprint.ComponentClass (tabClass)
-import Blueprint.Type (Prop, PropsEx)
+import Blueprint.Event (EventHandler2)
+import Blueprint.ComponentClass (tabClass, tabListClass, tabPanelClass, tabsClass)
+import Blueprint.Type (Prop, PropsEx, UnknownStyleType)
 
-type TabProps = TabPropsEx ()
-
-type TabPropsEx r = PropsEx
+type TabProps =  PropsEx
   ( id :: String
   , isDisabled :: Boolean
   , panelId :: String
-  , indicatorWrapperStyle :: String     --- TODO React.CSSProperties
+  , isSelected :: Boolean
+  )
+
+type TabList = PropsEx
+  ( indicatorWrapperStyle :: UnknownStyleType
   , shouldAnimate :: Boolean
-  , _id :: String
+  )
+
+type TabPanel = PropsEx
+  ( _id :: String
   , _tabId :: String
-  , initialSelectedTabIndex :: Number
+  )
+
+type Tabs eff = PropsEx
+  ( initialSelectedTabIndex :: Number
   , selectedTabIndex :: Number
-  , onChange :: String                  --- TODO (selectedTabIndex: number, prevSelectedTabIndex: number): void;
-  |r
+  , onChange :: EventHandler2 eff Number  Number
+  , indicatorWrapperStyle :: UnknownStyleType
   )
 
 tab :: Prop TabProps -> Array ReactElement -> ReactElement
 tab = createElement tabClass
+
+tabList :: Prop TabList -> Array ReactElement ->  ReactElement
+tabList = createElement tabListClass
+
+tabPanel :: Prop TabPanel -> Array ReactElement -> ReactElement
+tabPanel = createElement tabPanelClass
+
+tabs :: forall eff. Prop (Tabs eff) -> Array ReactElement -> ReactElement
+tabs = createElement tabsClass

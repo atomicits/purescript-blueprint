@@ -17,7 +17,6 @@ type MenuItemProps eff = MenuItemPropsEx eff ()
 type MenuItemPropsEx eff r = ActionPropsEx eff
   ( href :: String
   , target :: String
-  , text ::  String
   , label :: ComponentORString
   , shouldDismissPopover :: Boolean
   -- handling submenu props

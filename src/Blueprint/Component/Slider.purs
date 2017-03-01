@@ -4,22 +4,37 @@ module Blueprint.Component.Slider
   , NumberRange
   , slider
   , RenderLabel
+  , CoreSliderProps
+  , CoreSliderPropsEx
   ) where
 
-import Data.Unit (Unit)
+import Prelude (Unit
+               )
 import React (ReactElement, createElement)
 
 import Blueprint.ComponentClass (sliderClass)
-import Blueprint.Type
-
+import Blueprint.Event (EventHandler)
+import Blueprint.Type (ComponentORString, Prop, PropsEx)
 
 type NumberToComponentORString = (Number -> ComponentORString)
 
 data RenderLabel = NumberToComponentORString | Boolean
 
-type SliderProps = SliderPropsEx ()
+type NumberRange = Array Int
 
-type SliderPropsEx r = PropsEx
+type SliderProps eff = SliderPropsEx eff ()
+
+type SliderPropsEx eff  r = CoreSliderPropsEx
+  ( initialValue :: Number
+  , value :: NumberRange
+  , onChange :: EventHandler eff Unit
+  , onRelease :: NumberRange -> Unit
+  | r
+  )
+
+type CoreSliderProps = CoreSliderPropsEx ()
+
+type CoreSliderPropsEx r = PropsEx
   ( disabled :: Boolean
   , labelStepSize :: Number
   , max :: Number
@@ -27,15 +42,10 @@ type SliderPropsEx r = PropsEx
   , showTrackFill :: Boolean
   , stepSize :: Number
   , renderLabel :: RenderLabel
-  , isMoving :: Boolean
-  , initialValue :: Number
-  , value :: NumberRange
-  , onChange :: NumberRange -> Unit
-  , onRelease :: NumberRange -> Unit
-  | r
+  , tickSize :: Number
+  |r
   )
 
-type NumberRange = Array Int -- DISCUSS: will it have a start and end? or an array of int?
 
-slider :: Prop SliderProps -> Array ReactElement -> ReactElement
+slider :: forall eff. Prop (SliderProps eff) -> Array ReactElement -> ReactElement
 slider = createElement sliderClass
