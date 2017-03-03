@@ -74,6 +74,9 @@ type RowHeights =
   , defaultRowHeight :: Number
   }
 
+----
+
+type HorizontalCellDivider = {}
 
 columnHeaderCell :: Prop ColumnHeaderCellProps -> Array ReactElement -> ReactElement
 columnHeaderCell = createElement columnHeaderCellClass
