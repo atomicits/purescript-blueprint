@@ -3,8 +3,8 @@ module Blueprint.Component.Table.Interactions where
 import Blueprint.Component.TableClass
 import Blueprint.Component.Menu (MenuItemPropsEx)
 import Blueprint.Component.Table.Regions (Region)
-import Blueprint.Event (EventHandler2, MouseEvent, UnitEventHandler, EventHandler)
-import Blueprint.Type (Prop, PropsEx, UnknownFunctionType)
+import Blueprint.Event (EventHandler, EventHandler2, UnitEventHandler, MouseEvent)
+import Blueprint.Type (Prop, PropsEx)
 import Control.Monad.Eff (Eff)
 import Prelude (Unit)
 import React (ReactElement, createElement)
@@ -63,17 +63,17 @@ type ResizeHandlePropsEx eff r = PropsEx
 
 -- --- IResizableProps
 
-type IndexedResizeCallback = { delete :: UnknownFunctionType } -- (index: number, size: number) => void; }
+type IndexedResizeCallback eff = { delete :: Number -> Number -> Eff eff Unit } -- (index: number, size: number) => void; }
 
 ---- IDragSelectableProps
 
-type SelectedRegionTransform = { delete :: UnknownFunctionType } --  (region: IRegion, event: MouseEvent, coords?: ICoordinateData) => IRegion;
+type SelectedRegionTransform eff = { delete :: Region -> MouseEvent eff -> CoordinateData -> Region } --  (region: IRegion, event: MouseEvent, coords?: ICoordinateData) => IRegion;
 
 type SelectableProps eff  =
   { allowMultipleSelection :: Boolean
   , onSelection :: Array Region -> Eff eff Unit
   , selectedRegions :: Region
-  , selectedRegionTransform :: SelectedRegionTransform
+  , selectedRegionTransform :: SelectedRegionTransform eff
   }
 
 type DragSelectableProps eff =
@@ -84,7 +84,7 @@ type DragSelectableProps eff =
 
 ----  IMenuContext
 
-type ContextMenuRenderer = { delete :: UnknownFunctionType } --(context: IMenuContext) => JSX.Element;
+type ContextMenuRenderer = { delete :: MenuContext -> ReactElement } --(context: IMenuContext) => JSX.Element;
 
 type MenuContext =
   { getRegions :: Unit -> Array Region

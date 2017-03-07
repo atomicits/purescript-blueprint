@@ -16,7 +16,7 @@ import Blueprint.Component.Dialog (DialogProps, dialog) as B
 import Blueprint.Component.EditableText (EditableTextProps, editableText) as B
 import Blueprint.Component.FormControl (CheckboxProps, ControlPropsEx, IntOrString, NumericInputProps, RadioProps, SwitchProps, checkbox, numericInput, radio, radioGroup, switch) as B
 import Blueprint.Component.Hotkeys (HotkeyProps, HotkeysProps, hotkey, hotkeys) as B
-import Blueprint.Component.Menu (MenuDividerProps, MenuItemProps, MenuItemPropsEx, MenuProps, menu, menuDevider, menuItem) as B
+import Blueprint.Component.Menu (MenuDividerProps, MenuItemProps, MenuProps, menu, menuDevider, menuItem) as B
 import Blueprint.Component.Navbar (NavbarGroupModifier, NavbarModifier, navBar, navBarDivider, navBarFixed, navBarGroup) as B
 import Blueprint.Component.NonIdealState (NonIdealStateProps, nonIdealState) as B
 import Blueprint.Component.Overlay (OverLayableProps, OverLayablePropsEx, OverlayProps, OverlayPropsEx, overlay) as B
