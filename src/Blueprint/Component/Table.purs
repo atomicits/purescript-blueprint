@@ -74,17 +74,17 @@ type TablePropsEx eff a r = PropsEx
   , getCellClipboardData :: Number -> Number -> a
   , isColumnResizable :: Boolean
   , loadingOptions :: TableLoadingOption
-  , onColumnWidthChanged :: T.IndexedResizeCallback
+  , onColumnWidthChanged :: T.IndexedResizeCallback eff
   , columnWidths :: Array Number
   , isRowResizable :: Boolean
-  , onRowHeightChanged :: T.IndexedResizeCallback
+  , onRowHeightChanged :: T.IndexedResizeCallback eff
   , isRowHeaderShown :: Boolean
   , onSelection :: EventHandler eff Unit
   , onCopy :: EventHandler eff  Unit
   , renderRowHeader ::T.RowHeaderRenderer
   , renderBodyContextMenu :: T.ContextMenuRenderer
   , numRows :: Number
-  , selectedRegionTransform :: T.SelectedRegionTransform
+  , selectedRegionTransform :: T.SelectedRegionTransform eff
   , selectionModes :: RegionCardinality
   , styledRegionGroups :: T.StyledRegionGroup
   , locator :: T.Locator
