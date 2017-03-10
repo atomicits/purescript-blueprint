@@ -1,7 +1,10 @@
 module Blueprint.Type where
 
 import Prelude
+
 import Blueprint.Event (EventHandler, MouseEvent, SyntheticEvent)
+
+
 
 newtype Position = Position Int
 
@@ -119,7 +122,7 @@ type ControlledPropsEx eff r =
 
 data ComponentORString
   = String
-  | UnknownJSXElementType
+  | ReactElement
 
 
 class AlignEnum a where

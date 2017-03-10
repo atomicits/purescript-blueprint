@@ -9,10 +9,15 @@ module  Blueprint.Component.Tree
   , TreeEventHandler
   )  where
 
-import Blueprint.Event
-import Blueprint.ComponentClass (treeClass)
-import Blueprint.Type (ComponentORString, Prop, PropsEx, UnknownFunctionType, UnknownReactType)
+import Prelude
+
+import Control.Monad.Eff (Eff)
 import React (ReactElement, createElement)
+
+import Blueprint.Event (EventHandler, MouseEvent)
+import Blueprint.ComponentClass (treeClass)
+import Blueprint.Type (ComponentORString, Prop, PropsEx, UnknownReactType, UnknownFunctionType)
+
 
 
 data NumberORString = String | Number
@@ -47,18 +52,18 @@ newtype TreeNode = TreeNode
   , secondaryLabel :: ComponentORString
   }
 
-type TreeNodeProps = TreeNodePropsEx ()
+type TreeNodeProps eff = TreeNodePropsEx eff ()
 
-type TreeNodePropsEx r =
+type TreeNodePropsEx eff r =
   ( children :: UnknownReactType
   , contentRef :: UnknownFunctionType
   , depth :: Number
   , key :: NumberORString
-  , onClick :: UnknownFunctionType
-  , onCollapse :: UnknownFunctionType
-  , onContextMenu :: UnknownFunctionType
-  , onDoubleClick :: UnknownFunctionType
-  , onExpand :: UnknownFunctionType
+  , onClick :: TreeNode -> MouseEvent eff -> Eff eff Unit
+  , onCollapse :: TreeNode -> MouseEvent eff -> Eff eff Unit
+  , onContextMenu :: TreeNode -> MouseEvent eff -> Eff eff Unit
+  , onDoubleClick :: TreeNode -> MouseEvent eff -> Eff eff Unit
+  , onExpand :: TreeNode -> MouseEvent eff -> Eff eff Unit
   , path :: Array Number
   |r
   )
