@@ -8,10 +8,12 @@ module Blueprint.Component.Navbar
   ) where
 
 import Prelude
+
+import React (ReactElement)
 import React.DOM as RD
 import React.DOM.Props as RP
+
 import Blueprint.Type (class AlignEnum, class DarkEnum)
-import React (ReactElement)
 
 
 newtype NavbarModifier = NavbarModifier String

@@ -9,6 +9,8 @@ import Prelude (Unit)
 foreign import data EventTarget :: *
 foreign import data Event :: *
 
+foreign import data HTMLElement :: *
+
 type SyntheticEvent eff = SyntheticEventEx eff ()
 
 
