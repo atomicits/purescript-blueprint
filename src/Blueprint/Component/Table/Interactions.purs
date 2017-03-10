@@ -1,13 +1,15 @@
 module Blueprint.Component.Table.Interactions where
 
+import Prelude (Unit)
+
+import React (ReactElement, createElement)
+
 import Blueprint.Component.TableClass
 import Blueprint.Component.Menu (MenuItemPropsEx)
 import Blueprint.Component.Table.Regions (Region)
 import Blueprint.Event (EventHandler, EventHandler2, UnitEventHandler, MouseEvent)
 import Blueprint.Type (Prop, PropsEx)
 import Control.Monad.Eff (Eff)
-import Prelude (Unit)
-import React (ReactElement, createElement)
 
 -- IDraggableProps
 
@@ -63,11 +65,11 @@ type ResizeHandlePropsEx eff r = PropsEx
 
 -- --- IResizableProps
 
-type IndexedResizeCallback eff = { delete :: Number -> Number -> Eff eff Unit } -- (index: number, size: number) => void; }
+type IndexedResizeCallback eff = { indexedResizeCallback :: Number -> Number -> Eff eff Unit }
 
 ---- IDragSelectableProps
 
-type SelectedRegionTransform eff = { delete :: Region -> MouseEvent eff -> CoordinateData -> Region } --  (region: IRegion, event: MouseEvent, coords?: ICoordinateData) => IRegion;
+type SelectedRegionTransform eff = { selectedRegionTransform :: Region -> MouseEvent eff -> CoordinateData -> Region }
 
 type SelectableProps eff  =
   { allowMultipleSelection :: Boolean

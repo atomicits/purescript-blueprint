@@ -3,16 +3,18 @@ module Blueprint.Component.Portal
   , portal
   ) where
 
-import Blueprint.ComponentClass (portalClass)
-import Blueprint.Type (Prop, PropsEx, UnknownRefType)
-import Data.Unit (Unit)
+import Prelude (Unit)
 import React (ReactElement, createElement)
 
--- export interface IPortalProps extends IProps, React.HTMLProps<HTMLDivElement> {
+import Blueprint.ComponentClass (portalClass)
+import Blueprint.Event (HTMLElement)
+import Blueprint.Type (Prop, PropsEx, UnknownRefType)
+
 
 type PortalProps = PropsEx
   ( containerRef    :: UnknownRefType
   , onChildrenMount :: Unit -> Unit
+  , htmlElement :: HTMLElement
   )
 
 portal :: Prop PortalProps -> Array ReactElement -> ReactElement

@@ -9,6 +9,7 @@ module Blueprint.Component.Menu
   ) where
 
 import React
+
 import Blueprint.ComponentClass (menuClass, menuDividerClass, menuItemClass)
 import Blueprint.Type (ActionPropsEx, ComponentORString, Prop, PropsEx)
 

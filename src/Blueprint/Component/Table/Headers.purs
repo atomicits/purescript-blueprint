@@ -1,10 +1,12 @@
 module Blueprint.Component.Table.Headers where
 
+import Prelude (Unit)
+
+import React (ReactElement, createElement)
+
 import Blueprint.Component.TableClass
 import Blueprint.Event (EventHandler)
-import Blueprint.Type (Intent, Prop, PropsEx, UnknownJSXElementType, UnknownStyleType, UnknownReactType)
-import Prelude (Unit)
-import React (ReactElement, createElement)
+import Blueprint.Type (Intent, Prop, PropsEx, UnknownReactType, UnknownStyleType)
 
 ---- ColumnHeaderCellProps
 
@@ -20,7 +22,7 @@ type ColumnHeaderCellPropsEx r  = PropsEx
   ( isActive :: Boolean
   , isColumnSelected :: Boolean
   , loading :: Boolean
-  , menu :: UnknownJSXElementType
+  , menu :: ReactElement
   , menuIconName :: String
   , style :: UnknownStyleType
   , resizeHandle :: UnknownReactType  -- ResizeHandle; -- need to discuss
@@ -57,7 +59,7 @@ type RowHeaderCellPropsEx r = PropsEx
   , isRowSelected :: Boolean
   , name :: String
   , loading :: Boolean
-  , menu :: UnknownJSXElementType
+  , menu :: ReactElement
   , resizeHandle :: UnknownReactType  --  ResizeHandle;
   , style :: UnknownStyleType
   |r

@@ -24,9 +24,9 @@ type ControlPropsEx eff a r =  PropsEx
   ( checked :: Boolean
   , defaultChecked :: Boolean
   , disabled :: Boolean
-  , inputRef :: HTMLElement -> Eff eff a  --  (ref: HTMLInputElement) => any;
+  , inputRef :: HTMLElement -> Eff eff a
   , label :: String
-  , onChange :: EventHandler eff (SyntheticEvent eff)  -- React.FormEventHandler<HTMLInputElement>;
+  , onChange :: EventHandler eff (SyntheticEvent eff)
   | r
   )
 

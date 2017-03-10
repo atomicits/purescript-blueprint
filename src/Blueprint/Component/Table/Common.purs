@@ -1,15 +1,14 @@
 module Blueprint.Component.Table.Common where
 
-import Blueprint.Type
+import React (ReactElement)
 
---- loadableContent
+import Blueprint.Event (HTMLElement)
+import Blueprint.Type (UnknownStyleType)
 
 type LoadableContentProps =
   { loading :: Boolean
   , variableLength :: Boolean
   }
-
---- grid
 
 type RowIndices =
   { rowIndexStart :: Number
@@ -21,14 +20,10 @@ type ColumnIndices =
   , columnIndexEnd :: Number
   }
 
---- contextMenuTargetWrapper
-
 type ContextMenuTargetWrapper =
-  { renderContextMenu :: UnknownEventType  --  (e: React.MouseEvent<HTMLElement>) => JSX.Element
-  , style :: UnknownStyleType  --  React.CSSProperties
+  { renderContextMenu :: HTMLElement -> ReactElement
+  , style :: UnknownStyleType
   }
-
---- utils
 
 data ClassValue
   = String
@@ -49,5 +44,3 @@ type ClassArray = { classArray :: Array ClassValue}
 data AnyRect
   = Rect
   | ClientRect
-
----

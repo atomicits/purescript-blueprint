@@ -6,15 +6,15 @@ module Blueprint.Component.Tag
 import React (ReactElement, createElement)
 
 import Blueprint.ComponentClass (tagClass)
+import Blueprint.Event (HTMLElement)
 import Blueprint.Type (Intent, Prop, PropsEx, UnknownEventType)
-
-
--- export interface ITagProps extends IProps, IIntentProps, React.HTMLProps<HTMLSpanElement> {
 
 type TagProps = PropsEx
   ( onRemove :: UnknownEventType
+  , htmlElement :: HTMLElement
   , intent :: Intent
   )
+
 
 tag :: Prop TagProps -> Array ReactElement -> ReactElement
 tag = createElement tagClass
