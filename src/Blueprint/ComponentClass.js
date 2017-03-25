@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var BP = require("@blueprint/core");
 
@@ -57,7 +57,6 @@ exports.cellClass = T.Cell;
 exports.columnHeaderCellClass = T.ColumnHeaderCell;
 exports.editableNameClass = T.EditableName;
 exports.editableCellClass = T.EditableCell;
-
 
 exports.contextMenuShow = BP.ContextMenu.show;
 exports.contextMenuHide = BP.ContextMenu.hide;
