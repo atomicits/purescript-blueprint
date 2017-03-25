@@ -1,12 +1,14 @@
 module Blueprint.Component.Table.Cell where
 
-import Blueprint.Component.TableClass (cellClass, editableCellClass, jSONFormatClass, truncatedFormatClass, truncatedPopoverModeClass)
-import Blueprint.Event (EventHandler)
-import Blueprint.Type (Intent, Prop, PropsEx, UnknownStyleType)
 import Prelude (Unit)
 import React (ReactElement, createElement)
 
-type CellRenderer = { delete :: Number -> Number -> ReactElement } -- (rowIndex: number, columnIndex: number) => React.ReactElement<ICellProps>;
+import Blueprint.Component.TableClass (cellClass, editableCellClass, jSONFormatClass, truncatedFormatClass, truncatedPopoverModeClass)
+import Blueprint.Event (EventHandler)
+import Blueprint.Type (Intent, Prop, PropsEx, UnknownStyleType)
+
+
+type CellRenderer = { cellRenderer :: Number -> Number -> ReactElement }
 
 type CellProps = CellPropsEx ()
 

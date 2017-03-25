@@ -5,18 +5,19 @@ module Blueprint.Component.Button
   ) where
 
 import React
+import Blueprint.Event (HTMLElement)
 import Blueprint.ComponentClass (anchorButtonClass, buttonClass)
-import Blueprint.Type (ActionPropsEx, Prop, UnknownRefType)
+import Blueprint.Type (ActionPropsEx, Prop)
 
-type ButtonProps eff = ActionPropsEx eff
-  ( elementRef :: UnknownRefType
+type ButtonProps a eff = ActionPropsEx  eff
+  ( elementRef :: HTMLElement -> a
   , rightIconName :: String
   , loading :: Boolean
   , type :: String
   )
 
-anchorButton :: forall eff. Prop (ButtonProps eff) -> Array ReactElement -> ReactElement
+anchorButton :: forall a eff. Prop (ButtonProps a eff) -> Array ReactElement -> ReactElement
 anchorButton = createElement anchorButtonClass
 
-button :: forall eff. Prop (ButtonProps eff) -> Array ReactElement -> ReactElement
+button :: forall a eff. Prop (ButtonProps a eff) -> Array ReactElement -> ReactElement
 button = createElement buttonClass

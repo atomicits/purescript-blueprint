@@ -12,24 +12,21 @@ module Blueprint.Component.FormControl
   , numericInput
   ) where
 
-
 import Control.Monad.Eff (Eff)
 import React (ReactElement, createElement)
 
 import Blueprint.ComponentClass (checkboxClass, inputGroupClass, numericInputClass, radioClass, radioGroupClass, switchClass)
-import Blueprint.Type (ControlledPropsEx, Intent, OptionProps, Position, Prop, PropsEx, UnknownJSXElementType)
-import Blueprint.Event (EventHandler, EventHandler2, SyntheticEvent)
-
-
+import Blueprint.Event (EventHandler, EventHandler2, HTMLElement, SyntheticEvent)
+import Blueprint.Type (ControlledPropsEx, Intent, OptionProps, Position, Prop, PropsEx)
 
 type ControlProps eff a = ControlPropsEx eff a ()
 type ControlPropsEx eff a r =  PropsEx
   ( checked :: Boolean
   , defaultChecked :: Boolean
   , disabled :: Boolean
-  , inputRef ::   UnknownJSXElementType -> Eff eff a  --  (ref: HTMLInputElement) => any;
+  , inputRef :: HTMLElement -> Eff eff a
   , label :: String
-  , onChange :: EventHandler eff (SyntheticEvent eff)  -- React.FormEventHandler<HTMLInputElement>;
+  , onChange :: EventHandler eff (SyntheticEvent eff)
   | r
   )
 
@@ -73,10 +70,10 @@ type InputGroupProps eff a = ControlledPropsEx eff
   ( className :: String
   , intent :: Intent
   , disabled :: Boolean
-  , inputRef :: ReactElement -> Eff eff a
+  , inputRef :: HTMLElement -> Eff eff a
   , leftIconName :: String
   , placeholder :: String
-  , rightElement :: UnknownJSXElementType
+  , rightElement :: ReactElement
   , type :: String
   )
 

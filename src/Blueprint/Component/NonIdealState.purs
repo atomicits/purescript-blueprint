@@ -6,15 +6,15 @@ module Blueprint.Component.NonIdealState
 import React
 
 import Blueprint.ComponentClass (nonIdealStateClass)
-import Blueprint.Type (ComponentORString, Prop, PropsEx, UnknownJSXElementType)
-
+import Blueprint.Type (ComponentORString, Prop, PropsEx)
 
 type NonIdealStateProps =  PropsEx
-  ( action :: UnknownJSXElementType
+  ( action :: ReactElement
   , description :: ComponentORString
   , title :: String
   , visual :: ComponentORString
   )
+
 
 nonIdealState :: Prop NonIdealStateProps -> ReactElement
 nonIdealState p = createElement nonIdealStateClass p []

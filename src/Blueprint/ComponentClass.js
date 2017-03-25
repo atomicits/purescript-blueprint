@@ -1,6 +1,6 @@
 'use strict';
 
-const BP = require("@blueprint/core");
+var BP = require("@blueprint/core");
 
 exports.alertClass = BP.Alert;
 exports.breadcrumbClass = BP.Breadcrumb;
@@ -49,7 +49,7 @@ exports.toasterClass = BP.Toaster;
 exports.tooltipClass = BP.Tooltip;
 exports.treeClass = BP.Tree;
 
-const T = require("@blueprint/core");
+var T = require("@blueprint/core");
 
 exports.tableClass = T.Table;
 exports.columnClass = T.Column;

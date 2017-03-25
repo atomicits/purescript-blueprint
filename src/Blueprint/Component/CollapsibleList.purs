@@ -6,14 +6,13 @@ module Blueprint.Component.CollapsibleList
   , collapsibleList
   ) where
 
-import React
 import Control.Monad.Eff (Eff)
-
+import React (ReactElement, createElement)
 
 import Blueprint.Component.Menu (MenuItemProps)
 import Blueprint.Component.Popover (PopoverProps)
 import Blueprint.ComponentClass (collapsibleListClass)
-import Blueprint.Type (Prop, UnknownJSXElementType)
+import Blueprint.Type (Prop)
 
 newtype CollapseForm = CollapseForm Int
 
@@ -24,9 +23,9 @@ end :: CollapseForm
 end = CollapseForm 1
 
 type CollapsibleListProps eff = { className :: String
-                                , dropdownTarget :: UnknownJSXElementType
+                                , dropdownTarget :: ReactElement
                                 , dropdownProps :: Prop (PopoverProps eff)
-                                , renderVisibleItem :: Prop (MenuItemProps eff) -> Int -> Eff eff UnknownJSXElementType
+                                , renderVisibleItem :: Prop (MenuItemProps eff) -> Int -> Eff eff ReactElement
                                 , collapseFrom :: CollapseForm
                                 , visibleItemClassName :: String
                                 , visibleItemCount :: Int

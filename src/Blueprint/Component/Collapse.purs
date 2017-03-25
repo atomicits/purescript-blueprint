@@ -3,13 +3,13 @@ module Blueprint.Component.Collapse
   , collapse
   ) where
 
-import React
+import React (ReactElement, createElement)
 
 import Blueprint.ComponentClass (collapseClass)
-import Blueprint.Type (Prop, PropsEx, UnknownReactType)
+import Blueprint.Type (Prop, PropsEx)
 
 type CollapseProps =  PropsEx
-  ( comopnent :: UnknownReactType
+  ( comopnent :: ReactElement
   , isOpen :: Boolean
   , transitionDuration :: Number
   )
